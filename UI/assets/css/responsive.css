@@ -1,0 +1,318 @@
+@media(max-width: 1024px) {
+  .navbar-inverse .navbar-collapse,
+  .navbar-inverse .navbar-form {
+    padding: 0;
+  }
+  .container-fluid {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  .playstore>a>img {
+    height: 60px;
+  }
+  .appstore {
+    padding: 1.0rem 0;
+  }
+  .appstore>a>img {
+    height: 4rem;
+  }
+  .hightlight__img {
+    height: 30rem;
+  }
+  .user--pic {
+    height: 80px;
+  }
+  .how__content{
+    display:block;
+    margin-left:100px;
+  }
+  .row{
+    display:block;
+    height:100%;
+  }
+
+  .collapse{
+    display:none;
+  }
+  .form-control{
+    text-align:center;
+  }
+  .input--group{
+    display:block;
+    height:100%;
+  }
+  .input--group--signin{
+    display:block;
+    height:100%;
+    width:400px;
+    margin-left:-10rem;
+    margin-top:20px;
+  }
+  .contact__submit__signin{
+    width:400px;
+    margin-left:-10rem;
+  }
+  .contact__submit__loan{
+    margin-left:20px;
+  }
+  .margin--top--10{
+    width:400px;
+    margin-left:-10rem;
+  }
+  .navbar{
+    display:block;
+  }
+  .metric{
+    display:block;
+    height:100%;
+    padding-top:30px;
+    padding-bottom:30px;
+  }
+  .divider--half{
+    width:100%;
+    margin-bottom:50px;
+  }
+  .divider--three{
+    margin-top:50px;
+  }
+  .dashboard__header__bottom ul li {
+    display:block;
+    width:100%;
+  }
+  .LoanInfo__header{
+    margin-left:-10rem;
+  }
+  .LoanInfo__content{
+    margin-left:0px;
+  }
+  #below--loan--application{
+    display:none;
+  }
+}
+
+@media(max-width: 768px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+  .navbar-header,
+  .navbar-inverse .navbar-nav>li {
+    padding: 3.5rem 1rem
+  }
+  .mobile>img {
+    height: 50rem;
+  }
+  .card {
+    width: 225px;
+    margin-bottom: 2rem;
+    margin: 0;
+    margin-right: 10px;
+  }
+  .why {
+    padding: 12rem 0 0 0;
+  }
+  .why__content {
+    padding: 0;
+  }
+  .caption__text {
+    width: 100%;
+  }
+  .header__title {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .header__content {
+    font-size: 2rem;
+    line-height: 3.1rem;
+    margin: 1.6rem 0 2.4rem 0;
+  }
+  .highlight {
+    padding: 5rem 0
+  }
+  .hightlight__img {
+    height: 28rem;
+  }
+  .contact {
+    height: auto;
+  }
+  .contact__form {
+    padding: 0;
+  }
+  .thumbnail.no--border {
+    height: 33.6rem;
+  }
+  .highlight__title,
+  .testimony__title,
+  .partners__title {
+    font-size: 3.5rem;
+  }
+  .how__content{
+    display:block;
+    margin-left:100px;
+    align-content:space-around;
+  }
+  .row{
+    display:block;
+    height:100%;
+  }
+  .collapse{
+    display:none;
+  }
+   .form-control{
+    text-align:center;
+  }
+  .input--group{
+    display:block;
+    height:100%;
+  }
+}
+
+@media(max-width: 425px) {
+  .m--display {
+    display: none;
+  }
+  .navbar__header {
+    width: 100%;
+  }
+  .js__navbar__toggler {
+    display: block;
+    color: #ffff;
+  }
+  .dashboard__navbar__header a {
+    width: 50%;
+  }
+  .dashboard__navbar__header a div {
+    margin: 0;
+    margin-left: auto;
+  }
+  .m--center {
+    text-align: center;
+  }
+  .how__content {
+    /* width: 100%; */
+    width: 100%;
+    flex-direction: column;
+  }
+  .info {
+    padding: 40px 40px;
+  }
+  .benefits {
+    padding: 40px 70px 0 70px;
+  }
+  .divider--half {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .card {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  .input--group {
+    height: auto;
+    background: transparent;
+    flex-direction: column;
+  }
+  .input--group>.row>.col-md-4 {
+    padding: 10px 20px;
+  }
+  input.form--control {
+    background-color: #ffff;
+    margin-bottom: 10px;
+  }
+  .thumbnail.no--border {
+    height: 30rem;
+  }
+  .thumbnail {
+    margin-bottom: 0;
+  }
+  .navbar__collapse {
+    height: 100%;
+    width: 250px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #573a87;
+    overflow-x: hidden;
+    transition: display 0.5s;
+    padding-top: 15px;
+  }
+  .navbar__collapse .navbar__nav {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    padding: 0;
+  }
+  .navbar__nav>li {
+    font-family: BryantBoldAlt;
+    padding: 35px 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .navbar__collapse a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  .navbar__collapse a:hover {
+    color: #f1f1f1;
+  }
+  .navbar__collapse .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    display: block;
+  }
+  .CreateAccount__form {
+    padding: 0;
+  }
+  .CreateAccount__form>form .input--group>input {
+    border-right: none;
+  }
+  .metric {
+    display: block;
+    height: auto;
+    padding: 20px;
+  }
+  .LoanInfo {
+    display: block;
+  }
+  .LoanOffers,
+  .LoanHistory {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .LoanDetails {
+    width: 100%;
+  }
+  .how__content{
+    display:block;
+    margin-left:100px;
+    align-content:space-around;
+  }
+  .row{
+    display:block;
+    height:100%;
+  }
+  .collapse{
+    display:none;
+  }
+   .form-control{
+    text-align:center;
+  }
+  .input--group{
+    display:block;
+    height:100%;
+  }
+}
