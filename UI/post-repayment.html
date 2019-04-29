@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/myStyle.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Quick Credit</title>
+</head>
+
+<body>
+  <div class="wrapper dashboard--bg--grey">
+    <header class="dashboard__header bg--color--white">
+      <div class="header__nav">
+        <div class="dashboard__header__bottom bg--color--primary">
+          <div class="container-fluid">
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                  <img src="assets/img/mylogo2.png" alt="Quick Credit logo">
+              </li>
+              <li id="detailsLink1">
+                <a href="userDashboard.html">
+                  UserDashboard
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li id="detailsLink2">
+                <a href="index.html">
+                  Sign Out
+                  <hr class="active--indicator">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="LoanDetails light--shadow">
+            <h2>Loan Details</h2> 
+            <table>
+              <tr>
+                <td><b>Created On:</b></td>
+                <td>3-07-2018</td>
+              </tr>
+              <tr>
+                <td><b>Tenor:</b></td>
+                <td>3 Months</td>
+              </tr>
+              <tr>
+                <td><b>Amount:</b></td>
+                <td>80,000frw</td>
+              </tr>
+              <tr>
+                <td><b>Balance:</b></td>
+                <td>0.00frw</td>
+              </tr>
+              <tr>
+                <td><b>Status:</b></td>
+                <td>Fully repaid</td>
+              </tr>
+            </table><br>
+            <form action="repaidloans.html" class="LoanForm">
+               <button type="submit" class="DashboardBtn btn--round DashboardColor--bg--primary margin--top--10">Post transaction</button>
+              </form>
+        </div>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    window.onload = () => {
+      app.loadSideBar();
+    }
+  </script>
+</body>
+
+</html>
