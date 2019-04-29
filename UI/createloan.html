@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/myStyle.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Quick Credit</title>
+</head>
+
+<body>
+  <div class="wrapper dashboard--bg--grey">
+    <header class="dashboard__header bg--color--white">
+      <div class="header__nav">
+        <nav class="navbar  container-fluid" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar__header dashboard__navbar__header">
+            <span class="js__navbar__toggler DashboardColor--primary" style="font-size:30px;cursor:pointer">&#9776; </span>
+            <a href="/" class="navbar__brand">
+              <div class="dashboard--logo--wrapper bg--color--primary">
+                <img src="assets/img/mylogo1.png" alt="Ride my way logo">
+              </div>
+            </a>
+          </div>
+
+          <!-- Collect the nav links for toggling -->
+          <div class="collapse navbar__collapse dashboard__collapse">
+            <a href="javascript:void(0)" class="closebtn js__navbar__toggler">&times;</a>
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                <a href="#">
+                  <span class="text--color--grey">Hello,</span>
+                  <span class="text--primary">David</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="notification">
+                  <span class="notify notify--dot--small"></span>
+                  <i class="fas fa-bell text--primary"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="dashboard__header__bottom bg--color--primary">
+          <div class="container-fluid">
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                <a href="userDashboard.html" class="">
+                  My Dashboard
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li>
+                <a href="index.html" class="notification">
+                  Sign Out
+                  <hr class="active--indicator">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="dashboard__content">
+        <div class="LoanDetails light--shadow">
+          <div class="LoanDetail__header">
+            <div class="LoanInfo__header">
+              <div class="LoanInfo__header__img text--center">
+                <img src="assets/img/user.png" alt="offerer profile">
+                <h3 class="text--primary">Loan application</h3>
+                <hr id="below--loan--application">
+              </div>
+            </div>
+            <div class="LoanInfo__content text--center margin--top--10">
+              <form action="userDashboard.html" role="form">
+                <!-- group inputs -->
+                <!-- capture names -->
+                <div class="input--group dashboard--input">
+                  <input type="text" class="form-control form--control" placeholder="Enter firstName" autofocus>
+                   <input type="text" class="form-control form--control" placeholder="Enter lastName">
+    
+                </div>
+
+                <!-- capture email and phone number -->
+                <div class="input--group dashboard--input">
+                  <input type="text" class="form-control form--control" placeholder="Enter email">
+                  <input type="text" class="form-control form--control" placeholder="Enter tenor(Maximum of 12 months)">
+                </div>
+
+                <!-- submit button -->
+                <div class="contact__submit margin--top--10--crtLoan">
+                  <button type="submit" class="btn btn--block bg--color--grey text--color--white light--shadow">
+                    <span>Create a loan</span>
+                  </button>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    window.onload = () => {
+      app.loadSideBar();
+    }
+  </script>
+</body>
+
+</html>
