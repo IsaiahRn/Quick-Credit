@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/css/myStyle.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Login | Quick Credit</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <section class="CreateAccount padding--bottom--210">
+      <div class="CreateAccount__title">
+        <div class="logo--wrapper">
+          <img src="assets/img/mylogo1.png" alt="Quick Credit logo">
+        </div>
+        <h4 class="text--center text--primary">Sign In</h4>
+      </div>
+      <div class="CreateAccount__headline">Get your short term loan in few minutes</div>
+      <div class="CreateAccount__content">
+        <div class="CreateAccount__form">
+          <form action="userDashboard.html" role="form">
+            <!-- group inputs -->
+            <!-- capture email and password-->
+            <div class="input--group--signin">
+              <input type="email" class="form-control form--control" placeholder="Enter Email address"><hr>
+              <input type="password" class="form-control form--control" placeholder="Enter Password">
+            </div>
+            <!-- submit button -->
+            <div class="contact__submit__signin">
+              <button type="submit" class="btn btn--block bg--color--grey text--color--white">
+                <span>Sign In</span>
+              </button>
+
+            </div>
+            <div class="margin--top--10">
+              <p class="text--primary">Don't have an account?
+                <a href="createaccount.html" class="text--color--grey">Create an account.</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+    <section class="contact CreateAccountFooter gradient">
+      <footer>
+        <h5 class="text--center text--color--white">&copy; Quick-Credit | Andela</h5>
+
+      </footer>
+  </div>
+  </section>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    window.onload = () => {
+      app.loadSideBar();
+    }
+  </script>
+</body>
+
+</html>
