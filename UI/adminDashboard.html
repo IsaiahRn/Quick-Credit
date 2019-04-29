@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/myStyle.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Quick Credit</title>
+</head>
+
+<body>
+  <div class="wrapper dashboard--bg--grey">
+    <header class="dashboard__header bg--color--white">
+      <div class="header__nav">
+        <nav class="navbar  container-fluid" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar__header dashboard__navbar__header">
+            <span class="js__navbar__toggler DashboardColor--primary" style="font-size:30px;cursor:pointer">&#9776; </span>
+            <a href="/" class="navbar__brand">
+              <div class="dashboard--logo--wrapper bg--color--primary">
+                <img src="assets/img/mylogo1.png" alt="Quick Credit logo">
+              </div>
+            </a>
+          </div>
+
+          <!-- Collect the nav links for toggling -->
+          <div class="collapse navbar__collapse dashboard__collapse">
+            <a href="javascript:void(0)" class="closebtn js__navbar__toggler">&times;</a>
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                <a href="#">
+                  <span class="text--color--grey">Hello,</span>
+                  <span class="text--primary">Admin</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="notification">
+                  <span class="notify notify--dot--small"></span>
+                  <i class="fas fa-bell text--primary"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="dashboard__header__bottom bg--color--primary">
+          <div class="container-fluid">
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                <a href="currentloans.html">
+                  Current Loans
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li>
+                <a href="repaidloans.html">
+                  Repaid Loans
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li>
+                <a href="verification.html">
+                  Verify Users
+                  <hr class="active--indicator">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="subheader">
+        <h3 class="DashboardColor--text--grey">Admin Dashboard</h3>
+        <ul class="nav navbar__nav">
+          <li>
+            <a href="#">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li>-</li>
+          <li>
+            <a href="adminDashboard.html">admin panel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="dashboard__content">
+
+        <div class="metric light--shadow">
+          <div class="divider--half">
+            <div class="row">
+              <div class="divider--three">
+                <div class="card__user">
+                  <img src="assets/img/ME.jpg" class="card__user__pics" alt="User character">
+                  <h2>Isaiah Runoro</h2>
+                  <h4>admin@email.com</h4>
+                  <h4>Kigali, Rwanda</h4>
+                </div>
+              </div>
+              <div class="divider--three vertical--center">
+                <div class="CreateRide">
+                  <a href="#">
+                    <i class="fa-3x DashboardColor--text--primary">27</i>
+                    <h4 class="DashboardColor--text--grey margin-left--10">Pending</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider--half">
+            <div class="row">
+              <div class="divider--three vertical--center">
+                <div class="CreateRide">
+                  <a href="#">
+                    <i class="fa-3x DashboardColor--text--primary">27</i>
+                    <h4 class="DashboardColor--text--grey">Approved</h4>
+                  </a>
+                </div>
+              </div>
+              <div class="divider--three vertical--center">
+                <div class="CreateRide">
+                  <a href="#">
+                    <i class="fa-3x DashboardColor--text--primary">17</i>
+                    <h4 class="DashboardColor--text--grey">Current Loans</h4>
+                  </a>
+                </div>
+              </div>
+              <div class="divider--three vertical--center">
+                <div class="CreateRide">
+                  <a href="#">
+                    <i class="fa-3x DashboardColor--text--primary">27</i>
+                    <h4 class="DashboardColor--text--grey margin-left--10">Repaid loans</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <div class="card">
+        <div class="card-content">
+          <div class="parcels-list">
+            <table class="table">
+              <tr class="row">
+                <th>Created On</th>
+                <th>UserId</th>
+                <th>Tenor</th>
+                <th>Loan/Amount</th>
+                <th>Status</th>
+                <th>More details</th>
+              </tr>
+              <tr class="row">
+                <td>3-07-2019</td>
+                <td>david@email.com</td>
+                <td>2 months</td>
+                <td>100,000Rwf</td>
+                <td>Pending</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>1-07-2019</td>
+                <td>karenzi@email.com</td>
+                <td>2 months</td>
+                <td>50,000Rwf</td>
+                <td>Approved</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>10-02-2019</td>
+                <td>karekezi@email.com</td>
+                <td>2 months</td>
+                <td>70,000Rwf</td>
+                <td>Rejected</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    window.onload = () => {
+      app.loadSideBar();
+    }
+  </script>
+</body>
+
+</html>
