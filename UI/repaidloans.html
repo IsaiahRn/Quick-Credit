@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/myStyle.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Quick Credit</title>
+</head>
+
+<body>
+  <div class="wrapper dashboard--bg--grey">
+    <header class="dashboard__header bg--color--white">
+      <div class="header__nav">
+        <div class="dashboard__header__bottom bg--color--primary">
+          <div class="container-fluid">
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                  <img src="assets/img/mylogo2.png" alt="Quick Credit logo">
+              </li>
+              <li id="detailsLink1">
+                <a href="adminDashboard.html">
+                  Dashboard
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li id="detailsLink2">
+                <a href="index.html">
+                  Sign Out
+                  <hr class="active--indicator">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="repaidloans light--shadow">
+            <h2>Loan Details</h2> 
+           <table class="table">
+              <tr class="row">
+                <th>Created On</th>
+                <th>UserId</th>
+                <th>Tenor</th>
+                <th>Loan/Amount</th>
+                <th>Status</th>
+                <th>More details</th>
+              </tr>
+              <tr class="row">
+                <td>3-07-2019</td>
+                <td>nkusi@email.com</td>
+                <td>3 months</td>
+                <td>10,000Rwf</td>
+                <td>Fully repaid</td>
+                <td>
+                  <a href="repaid-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>1-07-2019</td>
+                <td>isaiah@email.com</td>
+                <td>3 months</td>
+                <td>70,000Rwf</td>
+                <td>Fully repaid</td>
+                <td>
+                  <a href="repaid-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>10-02-2019</td>
+                <td>kwizera@email.com</td>
+                <td>3 months</td>
+                <td>80,000Rwf</td>
+                <td>Fully repaid</td>
+                <td>
+                  <a href="repaid-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+              </tr>
+            </table>
+        </div>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    window.onload = () => {
+      app.loadSideBar();
+    }
+  </script>
+</body>
+
+</html>
