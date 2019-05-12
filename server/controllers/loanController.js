@@ -43,7 +43,7 @@ class Loans {
     }
     return res.status(200).send({
       status: res.statusCode,
-      message: 'Here is All your loans!',
+      message: 'Here is All your loan requests!',
       data: foundLoans,
     });
   }
