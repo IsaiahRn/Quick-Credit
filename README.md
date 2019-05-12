@@ -74,7 +74,8 @@ Using Postman to access these endpoints
 
 ### UI templates
 
-Preview UI template here[ UI Template](https://isaiahrn.github.io/Quick-Credit/UI/index.html)
+Preview UI template here:
+[ UI Template](https://isaiahrn.github.io/Quick-Credit/UI/index.html)
 
 
 ### Authors
