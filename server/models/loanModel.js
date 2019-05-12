@@ -33,14 +33,6 @@ class Loan {
 
 
   fetchAllLoans(query = {}) {
-    // if (query.status) {
-    //   return loans.find(loan => (loan.status === query.status));
-    // }
-    // if (query.repaid) {
-    //   return loans.find(loan => (loan.repaid === query.repaid));
-    // }
-
-    // return loans;
 
     if (query.status && query.repaid) {
       const boolRepaid = JSON.parse(query.repaid);

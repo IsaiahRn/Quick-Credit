@@ -32,6 +32,27 @@ class Repayment {
 
     return repaymentCreation;
   }
+
+  // Fetch a loan repayment history
+  findById(loanId) {
+    const id = parseInt(loanId, 10);
+
+    const loanRepaymentRecord = repayment.filter(loan => loan.loanId === id);
+    return loanRepaymentRecord;
+  }
+
+  findOne(loanId) {
+    const id = parseInt(loanId, 10);
+
+    const loanRepaymentRecord = repayment.find(loan => loan.loanId === id);
+    return loanRepaymentRecord;
+  }
+
+
+  // Fetch all loan repayments history
+  fetchAllRepayment(loanId) {
+    return repayment;
+  }
 }
 
 export default new Repayment();
