@@ -38,7 +38,7 @@ class Loans {
     if (!foundLoans) {
       return res.status(404).send({
         status: res.statusCode,
-        error: 'Query was not found',
+        error: 'Query not found',
       });
     }
     return res.status(200).send({
