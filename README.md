@@ -4,7 +4,7 @@ Quick Credit is an online lending platform that provides short term soft loans t
 helps solve problems of financial inclusion as a way to alleviate poverty and empower low
 income earners.
 
-# Build Status
+### Build Status
 
 Build status of continous integration i.e travis, coveralls and codeclimate
 
@@ -13,11 +13,11 @@ Build status of continous integration i.e travis, coveralls and codeclimate
 [![Maintainability](https://api.codeclimate.com/v1/badges/d6c07e49f18ef60e092c/maintainability)](https://codeclimate.com/github/IsaiahRn/Quick-Credit/maintainability)
 
 
-# Motivation
+### Motivation
 
 This App is a challenge that will contritube greatly to my journey of becoming a world class developer
 
-## Getting Started
+### Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -43,7 +43,7 @@ Say what the step will be
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+### Running the tests
 
 - Run `npm test`
 
@@ -65,7 +65,7 @@ Using Postman to access these endpoints
 | /api/v1/loans/`<:loan-id>`/repayment       | POST      | Create a loan repayment record    |
 
 
-## Built With
+### Built With
 
 * HTML
 * Javascript
@@ -77,7 +77,7 @@ Using Postman to access these endpoints
 Preview UI template here[ UI Template](https://isaiahrn.github.io/Quick-Credit/UI/index.html)
 
 
-## Authors
+### Authors
 
 * **Isaie Runoro**
 [Github Profile](https://github.com/IsaiahRn)
@@ -86,5 +86,5 @@ Preview UI template here[ UI Template](https://isaiahrn.github.io/Quick-Credit/U
 ## Acknowledgments
 
 * [Andela](http://andela.com)
-* Olawale Aladeusi (https://www.codementor.io/olawalealadeusi896/building-simple-api-with-es6-krn8xx3k6)
+* [Olawale Aladeusi](https://www.codementor.io/olawalealadeusi896/building-simple-api-with-es6-krn8xx3k6)
 * [Brad Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
