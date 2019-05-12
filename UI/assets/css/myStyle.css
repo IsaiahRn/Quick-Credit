@@ -869,6 +869,10 @@ form .input--group>input:nth-child(even) {
   margin-bottom:10px;
 }
 
+.amount{
+  text-align:center;
+}
+
 .currentloans{
    width: 900px;
   height:430px;
