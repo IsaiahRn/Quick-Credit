@@ -43,7 +43,7 @@ class Loans {
     }
     return res.status(200).send({
       status: res.statusCode,
-      message: 'Here is All your loan requests!',
+      message: 'Here is All your loans!',
       data: foundLoans,
     });
   }
@@ -63,7 +63,7 @@ class Loans {
     const findLoan = model.findById(loanID);
     return res.status(200).send({
       status: res.statusCode,
-      message: 'Here is your Loan!',
+      message: 'Here is your loan!',
       data: findLoan[0],
     });
   }
