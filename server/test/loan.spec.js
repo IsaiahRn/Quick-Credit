@@ -101,6 +101,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
       .request(app)
       .patch('/api/v1/loans/1')
       .set('Authorization', `${token}`)
+      .set('Authorization', `${adminToken}`)
       .send(updateLoanData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
@@ -185,6 +186,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
       .request(app)
       .patch('/api/v1/loans/100')
       .set('Authorization', `${token}`)
+      .set('Authorization', `${adminToken}`)
       .send(updateLoanData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
