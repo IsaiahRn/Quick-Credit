@@ -63,7 +63,7 @@ class Loans {
     const findLoan = model.findById(loanID);
     return res.status(200).send({
       status: res.statusCode,
-      message: 'Here is your loan!',
+      message: 'Here is your Loan!',
       data: findLoan[0],
     });
   }
