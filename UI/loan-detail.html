@@ -22,7 +22,7 @@
             <span class="js__navbar__toggler DashboardColor--primary" style="font-size:30px;cursor:pointer">&#9776; </span>
             <a href="/" class="navbar__brand">
               <div class="dashboard--logo--wrapper bg--color--primary">
-                <img src="assets/img/mylogo1.png" alt="Ride my way logo">
+                <img src="assets/img/mylogo1.png" alt="Quick Credit logo">
               </div>
             </a>
           </div>
@@ -50,8 +50,13 @@
           <div class="container-fluid">
             <ul class="nav navbar__right navbar__nav">
               <li>
-                <a href="userDashboard.html" class="">
-                  Back To My Dashboard
+                <a href="currentloans.html" class="notification">
+                  Dashboard
+                  <hr class="active--indicator">
+                </a>
+              </li>
+              <li>
+                <a href="userDashboard.html#card">
                   <hr class="active--indicator">
                 </a>
               </li>
@@ -60,49 +65,32 @@
         </div>
       </div>
     </header>
-    <div class="container-fluid">
-      <div class="dashboard__content">
-        <div class="LoanDetails light--shadow">
-          <div class="LoanDetail__header">
-            <div class="LoanInfo__header">
-              <div class="LoanInfo__header__img text--center">
-                <img src="assets/img/user.png" alt="offerer profile">
-                <h3 class="text--primary">Loan application</h3>
-                <hr id="below--loan--application">
-              </div>
-            </div>
-            <div class="LoanInfo__content text--center margin--top--10">
-              <form action="userDashboard.html#card" role="form">
-                <!-- group inputs -->
-                <!-- capture names -->
-                <div class="input--group dashboard--input">
-                  <input type="text" class="form-control form--control" placeholder="Enter firstName" autofocus>
-                   <input type="text" class="form-control form--control" placeholder="Enter lastName">
-    
-                </div>
 
-                <!-- capture email and phone number -->
-                <div class="input--group dashboard--input">
-                  <input type="text" class="form-control form--control" placeholder="Enter email">
-                  <input type="text" class="form-control form--control" placeholder="Enter tenor(Maximum of 12 months)">
-                </div>
-
-                <div class="input--group dashboard--input amount--input">
-                  <input type="text" class="form-control form--control amount" placeholder="Enter loan amount">
-                </div>
-
-                <!-- submit button -->
-                <div class="contact__submit margin--top--10--crtLoan">
-                  <button type="submit" class="btn btn--block bg--color--grey text--color--white light--shadow">
-                    <span>Create a loan</span>
-                  </button>
-
-                </div>
-              </form>
-            </div>
-          </div>
+    <div class="LoanDetails light--shadow">
+            <h2>Loan Details</h2> 
+            <table>
+              <tr>
+                <td><b>Created On:</b></td>
+                <td>3-07-2018</td>
+              </tr>
+              <tr>
+                <td><b>Tenor:</b></td>
+                <td>3 Months</td>
+              </tr>
+              <tr>
+                <td><b>Amount:</b></td>
+                <td>80,000frw</td>
+              </tr>
+              <tr>
+                <td><b>Balance:</b></td>
+                <td>0.00frw</td>
+              </tr>
+              <tr>
+                <td><b>Status:</b></td>
+                <td>Fully repaid</td>
+              </tr>
+            </table>
         </div>
-      </div>
     </div>
   </div>
   <script src="assets/js/main.js"></script>
