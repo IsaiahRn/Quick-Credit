@@ -1,6 +1,9 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 
+import dotenv from "dotenv";
+dotenv.config();
+
 import app from '../server';
 import generate from '../helpers/jwtVerifyToken';
 import generateToken from './Token/generateTokens';
