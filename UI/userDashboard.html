@@ -57,12 +57,12 @@
               </li>
               <li>
                 <a href="userDashboard.html#card">
-                  Repayment history
+                  View loan history
                   <hr class="active--indicator">
                 </a>
               </li> 
               <li id="logout">
-                <a href="index.html">
+                <a href="signin.html">
                   Sign Out
                   <hr class="active--indicator">
                 </a>
@@ -107,7 +107,7 @@
             <div class="row">
               <div class="divider--three vertical--center">
                 <div class="CreateLoan">
-                    <i class="fa-3x DashboardColor--text--primary">4</i>
+                    <i class="fa-3x DashboardColor--text--primary">5</i>
                     <h4 class="DashboardColor--text--grey">Fully repaid</h4>
                 </div>
               </div>
@@ -124,59 +124,89 @@
 
         <div class="card" id="card">
         <div class="card-content">
-            <table class="table">
-              <tr class="row">
-                <th>Created On</th>
-                <th>Tenor</th>
-                <th>Loan/Amount</th>
-                <th>Status</th>
-                <th>More details</th>
-              </tr>
-              <tr class="row">
-                <td>3-07-2018</td>
-                <td>2 months</td>
-                <td>10,000Rwf</td>
-                <td>Not fully repaid</td>
-                <td>
-                  <a href="./repaid-details.html">
-                  <button class="view-detail">View details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>3-07-2018</td>
-                <td>2 months</td>
-                <td>10,000Rwf</td>
-                <td>Fully repaid</td>
-                <td>
-                  <a href="./repaid-details.html">
-                  <button class="view-detail">View details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>3-07-2018</td>
-                <td>2 months</td>
-                <td>10,000Rwf</td>
-                <td>Fully repaid</td>
-                <td>
-                  <a href="./repaid-details.html">
-                  <button class="view-detail">View details</button>
-                  </a>
-                </td>
-              </tr>
-            </table>
+          <input type="text" id="table-filter" onkeyup="userDashboard()" placeholder="Search By Status.." title="Type in a name">
+
+          <table id="mTable">
+            <tr class="header">
+              <th>Created On</th>
+              <th>Tenor</th>
+              <th>Loan/Amount</th>
+              <th>Status</th>
+              <th>More details</th>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Not fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2018</td>
+              <td>2 months</td>
+              <td>10,000Rwf</td>
+              <td>Fully repaid</td>
+              <td>
+                <a href="./loan-detail.html">
+                <button class="view-detail">View details</button>
+                </a>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
       </div>
     </div>
   </div>
   <script src="assets/js/main.js"></script>
-  <script>
-    window.onload = () => {
-      app.loadSideBar();
-    }
-  </script>
 </body>
 
 </html>
