@@ -16,21 +16,47 @@
   <div class="wrapper dashboard--bg--grey">
     <header class="dashboard__header bg--color--white">
       <div class="header__nav">
+        <nav class="navbar  container-fluid" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar__header dashboard__navbar__header">
+            <span class="js__navbar__toggler DashboardColor--primary" style="font-size:30px;cursor:pointer">&#9776; </span>
+            <a href="/" class="navbar__brand">
+              <div class="dashboard--logo--wrapper bg--color--primary">
+                <img src="assets/img/mylogo1.png" alt="Quick Credit logo">
+              </div>
+            </a>
+          </div>
+
+          <!-- Collect the nav links for toggling -->
+          <div class="collapse navbar__collapse dashboard__collapse">
+            <a href="javascript:void(0)" class="closebtn js__navbar__toggler">&times;</a>
+            <ul class="nav navbar__right navbar__nav">
+              <li>
+                <a href="#">
+                  <span class="text--color--grey">Hello,</span>
+                  <span class="text--primary">Admin</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="notification">
+                  <span class="notify notify--dot--small"></span>
+                  <i class="fas fa-bell text--primary"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
         <div class="dashboard__header__bottom bg--color--primary">
           <div class="container-fluid">
             <ul class="nav navbar__right navbar__nav">
               <li>
-                  <img src="assets/img/mylogo2.png" alt="Quick Credit logo">
-              </li>
-              <li id="detailsLink1">
-                <a href="adminDashboard.html">
-                  Dashboard
+                <a href="adminDashboard.html" class="notification">
+                  Back To Admin Dashboard
                   <hr class="active--indicator">
                 </a>
               </li>
-              <li id="detailsLink2">
-                <a href="index.html">
-                  Sign Out
+              <li>
+                <a href="userDashboard.html#card">
                   <hr class="active--indicator">
                 </a>
               </li>
@@ -41,48 +67,48 @@
     </header>
 
     <div class="repaidloans light--shadow">
-            <h2>Loan Details</h2> 
+            <h2>Repaid Loan History</h2> 
            <table class="table">
-              <tr class="row">
-                <th>Created On</th>
+              <tr>
                 <th>UserId</th>
                 <th>Tenor</th>
                 <th>Loan/Amount</th>
+                <th>Balance</th>
                 <th>Status</th>
                 <th>More details</th>
               </tr>
-              <tr class="row">
-                <td>3-07-2019</td>
+              <tr>
                 <td>nkusi@email.com</td>
                 <td>3 months</td>
                 <td>10,000Rwf</td>
+                <td>0.00Rwf</td>
                 <td>Fully repaid</td>
                 <td>
-                  <a href="repaid-details.html">
+                  <a href="post-repayment.html">
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
               </tr>
-              <tr class="row">
-                <td>1-07-2019</td>
+              <tr>
                 <td>isaiah@email.com</td>
                 <td>3 months</td>
                 <td>70,000Rwf</td>
+                <td>0.00Rwf</td>
                 <td>Fully repaid</td>
                 <td>
-                  <a href="repaid-details.html">
+                  <a href="post-repayment.html">
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
               </tr>
-              <tr class="row">
-                <td>10-02-2019</td>
+              <tr>
                 <td>kwizera@email.com</td>
                 <td>3 months</td>
                 <td>80,000Rwf</td>
+                <td>0.00Rwf</td>
                 <td>Fully repaid</td>
                 <td>
-                  <a href="repaid-details.html">
+                  <a href="post-repayment.html">
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
@@ -92,11 +118,6 @@
     </div>
   </div>
   <script src="assets/js/main.js"></script>
-  <script>
-    window.onload = () => {
-      app.loadSideBar();
-    }
-  </script>
 </body>
 
 </html>

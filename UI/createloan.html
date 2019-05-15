@@ -51,13 +51,7 @@
             <ul class="nav navbar__right navbar__nav">
               <li>
                 <a href="userDashboard.html" class="">
-                  My Dashboard
-                  <hr class="active--indicator">
-                </a>
-              </li>
-              <li>
-                <a href="index.html" class="notification">
-                  Sign Out
+                  Back To My Dashboard
                   <hr class="active--indicator">
                 </a>
               </li>
@@ -78,7 +72,7 @@
               </div>
             </div>
             <div class="LoanInfo__content text--center margin--top--10">
-              <form action="userDashboard.html" role="form">
+              <form action="userDashboard.html#card" role="form">
                 <!-- group inputs -->
                 <!-- capture names -->
                 <div class="input--group dashboard--input">
@@ -96,6 +90,10 @@
                   <input type="text" class="form-control form--control amount" placeholder="Enter amount">
                 </div>
 
+                <div class="input--group dashboard--input amount--input">
+                  <input type="text" class="form-control form--control amount" placeholder="Enter loan amount">
+                </div>
+
                 <!-- submit button -->
                 <div class="contact__submit margin--top--10--crtLoan">
                   <button type="submit" class="btn btn--block bg--color--grey text--color--white light--shadow">
@@ -111,11 +109,6 @@
     </div>
   </div>
   <script src="assets/js/main.js"></script>
-  <script>
-    window.onload = () => {
-      app.loadSideBar();
-    }
-  </script>
 </body>
 
 </html>

@@ -408,6 +408,14 @@ nav .navbar__nav>li>a {
   color: #ffffff;
 }
 
+.amount{
+  text-align:center;
+}
+
+.amount--input{
+  margin-top:10px;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -552,6 +560,14 @@ tr:nth-child(even) {
   z-index: 10;
   border: none;
   border-right: 1px solid;
+}
+
+#table-filter{
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px; 
 }
 
 .text__area {

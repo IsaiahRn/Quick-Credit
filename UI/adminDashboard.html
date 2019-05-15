@@ -143,17 +143,19 @@
     <div class="card">
         <div class="card-content">
           <div class="parcels-list">
-            <table class="table">
-              <tr class="row">
+            <input type="text" id="table-filter" onkeyup="adminDashboard()" placeholder="Search for names.." title="Type in a name">
+
+            <table id="myTable">
+            <tr class="header">
                 <th>Created On</th>
                 <th>UserId</th>
                 <th>Tenor</th>
                 <th>Loan/Amount</th>
                 <th>Status</th>
                 <th>More details</th>
-              </tr>
-              <tr class="row">
-                <td>3-07-2019</td>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
                 <td>david@email.com</td>
                 <td>2 months</td>
                 <td>100,000Rwf</td>
@@ -163,32 +165,70 @@
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
-              </tr>
-              <tr class="row">
-                <td>1-07-2019</td>
-                <td>karenzi@email.com</td>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
+                <td>david@email.com</td>
                 <td>2 months</td>
-                <td>50,000Rwf</td>
+                <td>100,000Rwf</td>
                 <td>Approved</td>
                 <td>
                   <a href="./loan-details.html">
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
-              </tr>
-              <tr class="row">
-                <td>10-02-2019</td>
-                <td>karekezi@email.com</td>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
+                <td>david@email.com</td>
                 <td>2 months</td>
-                <td>70,000Rwf</td>
+                <td>100,000Rwf</td>
                 <td>Rejected</td>
                 <td>
                   <a href="./loan-details.html">
                   <button class="view-detail">View details</button>
                   </a>
                 </td>
-              </tr>
-            </table>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
+                <td>david@email.com</td>
+                <td>2 months</td>
+                <td>100,000Rwf</td>
+                <td>Approved</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
+                <td>david@email.com</td>
+                <td>2 months</td>
+                <td>100,000Rwf</td>
+                <td>Pending</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+            </tr>
+            <tr>
+              <td>3-07-2019</td>
+                <td>david@email.com</td>
+                <td>2 months</td>
+                <td>100,000Rwf</td>
+                <td>Approved</td>
+                <td>
+                  <a href="./loan-details.html">
+                  <button class="view-detail">View details</button>
+                  </a>
+                </td>
+            </tr>
+          </table>
           </div>
         </div>
       </div>
@@ -196,11 +236,6 @@
     </div>
   </div>
   <script src="assets/js/main.js"></script>
-  <script>
-    window.onload = () => {
-      app.loadSideBar();
-    }
-  </script>
 </body>
 
 </html>
