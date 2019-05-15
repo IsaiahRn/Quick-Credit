@@ -9,11 +9,23 @@ class Loans {
   static createLoan(req, res) {
     // check if there's invalid data in request body
     const { error } = validation.createLoan(req.body);
-    if (error) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: error.details[0].message,
-      });
+
+    const arrErrorList = [];
+
+    const errorValidator = () => {
+      for (let i = 0; i < error.details.length; i++) {
+        arrErrorList.push(error.details[i].message);
+      }
+    };
+
+    if(error){
+      `${errorValidator()}`;
+      if (error) {
+        return res.status(400).send({
+          status: res.statusCode,
+          error: arrErrorList,
+        });
+      }
     }
     const ownerId = String(req.body.email, 10);
     const ownerInfo = users.findById(ownerId);
@@ -123,31 +135,6 @@ class Loans {
       data: repaymentInfo,
     });
   }
-
-  // Get a loan repayment history
-  // static getRepaymentRecord(req, res) {
-  //  const loanID = parseInt(req.params.loanId, 10);
-  //   const findLoanRecord = repayment.findById(loanID);
-
-  //   if (!findLoanRecord) {
-  //     return res.status(404).send({
-  //       status: res.statusCode,
-  //       error: 'Loan record with this ID not found',
-  //     });
-  //   }
-
-  //   return res.status(200).send({
-  //     status: res.statusCode,
-  //     message: 'Here is your loan repayment history!',
-  //     data: _.pick(findLoanRecord[0], [
-  //         'loanId',
-  //         'createdOn',
-  //         'amount',
-  //         'monthlyInstallement',
-  //         'newbalance',
-  //       ]),
-  //   });
-  // }
 
   // Get a loan repayment history
   static getRepaymentRecords(req, res) {
