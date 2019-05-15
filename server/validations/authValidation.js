@@ -9,7 +9,6 @@ export default {
       lastname: Joi.string().min(3).trim().max(20)
         .required(),
       password: Joi.string().min(8).max(16).regex(/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/),
-      // type: Joi.string().valid(['client', 'staff']),
       address: Joi.string().min(3).trim().max(20)
         .required(),
     };
@@ -23,10 +22,11 @@ export default {
         key: '{{key}} ',
         string: {
           regex: {
-            base: 'must not contain at least One Digit, One Special Character, One Lowercase and One Uppercase Letter!',
+            base: 'must contain at least A Digit, A Special Character, A Lowercase and A Uppercase Letter!',
           },
         },
       },
+      abortEarly: false
     };
 
     return Joi.validate(userData, schema, options);
@@ -46,6 +46,7 @@ export default {
       language: {
         key: '{{key}} ',
       },
+      abortEarly: false
     };
 
     return Joi.validate(value, schema, options);

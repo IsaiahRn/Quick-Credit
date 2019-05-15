@@ -10,7 +10,11 @@ export default {
       amount: Joi.number().required(),
     };
 
-    return Joi.validate(value, schema);
+    const options = {
+      abortEarly: false
+    };
+
+    return Joi.validate(value, schema, options);
   },
 
   ApproveReject(value) {

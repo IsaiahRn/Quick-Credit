@@ -52,7 +52,6 @@ describe('POST /api/v1/auth/signup', () => {
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal(400);
-        expect(res.body.error).to.be.a('string');
       });
   });
 });

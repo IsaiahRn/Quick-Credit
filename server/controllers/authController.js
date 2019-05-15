@@ -11,12 +11,24 @@ class Users {
 
     // check if there's an error in our request sent
     const { error } = validation.signup(req.body);
+
+    const arrErrorList = [];
+
+    const errorValidator = () => {
+    for (let i = 0; i < error.details.length; i++) {
+      arrErrorList.push(error.details[i].message);
+    }
+  };
+
+  if(error){
+    `${errorValidator()}`;
     if (error) {
       return res.status(400).send({
         status: res.statusCode,
-        error: error.details[0].message,
+        error: arrErrorList,
       });
     }
+  }
 
     // check if the provided email is registered before
     const found = model.findOne(req.body.email);
@@ -65,14 +77,26 @@ class Users {
 
     // check if there's an error in our request sent
     const { error } = validation.login(req.body);
+
+    const arrErrorList = [];
+
+    const errorValidator = () =>{
+    for (let i = 0; i < error.details.length; i++) {
+      arrErrorList.push(error.details[i].message);
+    }
+  }
+
+  if(error){
+    `${errorValidator()}`;
     if (error) {
       return res
         .status(400)
         .send({
           status: res.statusCode,
-          error: error.details[0].message,
+          error: arrErrorList,
         });
     }
+  }
 
     // extract our email and password from the request body
     const { email, password } = req.body;
