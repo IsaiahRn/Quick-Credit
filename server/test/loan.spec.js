@@ -26,12 +26,11 @@ before('Before Test,User should make signup', () => {
     });
 });
 
-
 describe('POST /api/v1/loans', () => {
   it('should create a new loan', () => {
     const validLoanData = {
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -48,7 +47,7 @@ describe('POST /api/v1/loans', () => {
   it('should return error message once you provide LoanId', () => {
     const invalidLoanId = {
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -66,7 +65,7 @@ describe('POST /api/v1/loans', () => {
     const invalidLoanData = {
       loanId: 1,
       tenor: 'tenor',
-      amount: 'amount',
+      amount: 'amount'
     };
     chai
       .request(app)
@@ -80,13 +79,12 @@ describe('POST /api/v1/loans', () => {
   });
 });
 
-
 describe('PATCH /api/v1/loans/<loan-id>', () => {
   it('should update an existing Loan request', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -105,7 +103,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -123,7 +121,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -141,7 +139,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -159,7 +157,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)
@@ -179,7 +177,7 @@ describe('PATCH /api/v1/loans/<loan-id>', () => {
     const updateLoanData = {
       loanId: 1,
       tenor: 5,
-      amount: 20000.587,
+      amount: 20000.587
     };
     chai
       .request(app)

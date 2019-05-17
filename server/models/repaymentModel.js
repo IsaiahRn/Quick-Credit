@@ -4,9 +4,8 @@ import loan from './loanModel';
 const repayment = [];
 
 class Repayment {
-
   // Create repayments
-  createRepayment(data, loanId) {
+  createRepayment (data, loanId) {
     const { paidAmount } = data;
     const loanFound = loan.findOne(loanId);
 
@@ -21,7 +20,7 @@ class Repayment {
       amount: loanFound.amount,
       monthlyInstallement: loanFound.paymentInstallment,
       paidAmount: pAmount,
-      newbalance: balance,
+      newbalance: balance
     };
 
     repayment.push(repaymentCreation);
@@ -35,7 +34,7 @@ class Repayment {
   }
 
   // Fetch a loan repayment history
-  findById(loanId) {
+  findById (loanId) {
     const id = parseInt(loanId, 10);
 
     const loanRepaymentRecord = repayment.filter(loan => loan.loanId === id);
@@ -43,16 +42,15 @@ class Repayment {
   }
 
   // Fetch a loan By Id
-  findOne(loanId) {
+  findOne (loanId) {
     const id = parseInt(loanId, 10);
 
     const loanRepaymentRecord = repayment.find(loan => loan.loanId === id);
     return loanRepaymentRecord;
   }
 
-
   // Fetch all loan repayments history
-  fetchAllRepayment(loanId) {
+  fetchAllRepayment (loanId) {
     return repayment;
   }
 }

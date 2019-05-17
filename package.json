@@ -6,6 +6,7 @@
   "scripts": {
     "start": "babel-node server/server.js",
     "dev-start": "nodemon --exec babel-node server/server.js",
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "nyc --reporter=text --reporter=lcov mocha --timeout 1500 --require babel-polyfill --require babel-register server/test/*.spec.js --exit",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js --fix",
@@ -39,11 +40,14 @@
     "nodemon": "^1.18.11"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-standard": "^3.0.1",
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",

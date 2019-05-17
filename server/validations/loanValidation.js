@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
 export default {
-  createLoan(value) {
+  createLoan (value) {
     const schema = {
       tenor: Joi.number().required(),
-      amount: Joi.number().required(),
+      amount: Joi.number().required()
     };
 
     const options = {
@@ -14,10 +14,10 @@ export default {
     return Joi.validate(value, schema, options);
   },
 
-  ApproveReject(value) {
+  ApproveReject (value) {
     const schema = Joi.object().keys({
-      status: Joi.string().insensitive().valid('approved', 'rejected').required(),
+      status: Joi.string().insensitive().valid('approved', 'rejected').required()
     });
     return Joi.validate(value, schema);
-  },
+  }
 };

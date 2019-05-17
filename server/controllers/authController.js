@@ -5,9 +5,7 @@ import generate from '../helpers/jwtVerifyToken';
 import validation from '../validations/authValidation';
 
 class Users {
-
-  static async signup(req, res) {
-
+  static async signup (req, res) {
     // create admin
     await model.createAdmin();
 
@@ -17,27 +15,27 @@ class Users {
     const arrErrorList = [];
 
     const errorValidator = () => {
-    for (let i = 0; i < error.details.length; i++) {
-      arrErrorList.push(error.details[i].message);
-    }
-  };
+      for (let i = 0; i < error.details.length; i++) {
+        arrErrorList.push(error.details[i].message);
+      }
+    };
 
-  if(error){
-    `${errorValidator()}`;
     if (error) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: arrErrorList,
-      });
+      `${errorValidator()}`;
+      if (error) {
+        return res.status(400).send({
+          status: res.statusCode,
+          error: arrErrorList
+        });
+      }
     }
-  }
 
     // check if the provided email is registered before
     const found = model.findOne(req.body.email);
     if (found) {
       return res.status(400).send({
         status: res.statusCode,
-        error: 'This e-mail is already registered!',
+        error: 'This e-mail is already registered!'
       });
     }
 
@@ -51,7 +49,7 @@ class Users {
       'address',
       'status',
       'isAdmin',
-      'created_on',
+      'created_on'
     ]));
     return res
       .header('Authorization', `${token}`)
@@ -68,13 +66,12 @@ class Users {
           address: newUser.address,
           status: newUser.status,
           isAdmin: newUser.isAdmin,
-          created_on: newUser.created_on,
-        },
+          created_on: newUser.created_on
+        }
       });
   }
 
-  static async login(req, res) {
-
+  static async login (req, res) {
     // create admin
     await model.createAdmin();
 
@@ -83,21 +80,21 @@ class Users {
 
     const arrErrorList = [];
 
-    const errorValidator = () =>{
-    for (let i = 0; i < error.details.length; i++) {
-      arrErrorList.push(error.details[i].message);
-    }
-  }
+    const errorValidator = () => {
+      for (let i = 0; i < error.details.length; i++) {
+        arrErrorList.push(error.details[i].message);
+      }
+    };
 
-  if(error){
-    `${errorValidator()}`;
     if (error) {
+      `${errorValidator()}`;
+      if (error) {
         return res.status(400).send({
-        status: res.statusCode,
-        error: arrErrorList,
-      });
+          status: res.statusCode,
+          error: arrErrorList
+        });
+      }
     }
-  }
 
     // extract our email and password from the request body
     const { email, password } = req.body;
@@ -107,10 +104,9 @@ class Users {
     if (!found) {
       return res.status(404).send({
         status: res.statusCode,
-        error: 'This e-mail is not yet registered!',
+        error: 'This e-mail is not yet registered!'
       });
     }
-
 
     /** check if the provided password is matching with or equal to
      * the hashed password in our memory
@@ -119,7 +115,7 @@ class Users {
     if (!match || !found) {
       return res.status(400).send({
         status: res.statusCode,
-        error: 'Wrong credential provided!',
+        error: 'Wrong credential provided!'
       });
     }
 
@@ -133,8 +129,8 @@ class Users {
         'address',
         'status',
         'isAdmin',
-        'created_on',
-      ]),
+        'created_on'
+      ])
     );
 
     // set the new token in the response - back to the client
@@ -156,8 +152,8 @@ class Users {
           address: found.address,
           status: found.status,
           isAdmin: found.isAdmin,
-          created_on: found.created_on,
-        },
+          created_on: found.created_on
+        }
       });
   }
 }

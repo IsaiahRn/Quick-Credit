@@ -10,7 +10,7 @@ export default {
         .required(),
       password: Joi.string().min(8).max(16).regex(/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/),
       address: Joi.string().min(3).trim().max(20)
-        .required(),
+        .required()
     };
 
     /**
@@ -22,9 +22,9 @@ export default {
         key: '{{key}} ',
         string: {
           regex: {
-            base: 'must contain at least A Digit, A Special Character, A Lowercase and A Uppercase Letter!',
-          },
-        },
+            base: 'must contain at least A Digit, A Special Character, A Lowercase and A Uppercase Letter!'
+          }
+        }
       },
       abortEarly: false
     };
@@ -39,16 +39,16 @@ export default {
   login: (value) => {
     const schema = {
       email: Joi.string().email({ minDomainAtoms: 2 }).trim().required(),
-      password: Joi.string().required(),
+      password: Joi.string().required()
     };
 
     const options = {
       language: {
-        key: '{{key}} ',
+        key: '{{key}} '
       },
       abortEarly: false
     };
 
     return Joi.validate(value, schema, options);
-  },
+  }
 };

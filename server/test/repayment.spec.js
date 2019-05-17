@@ -15,7 +15,7 @@ chai.use(chaiHttp);
 before('create a loan request', () => {
   const validLoanData2 = {
     tenor: 5,
-    amount: 20000.587,
+    amount: 20000.587
   };
   chai
     .request(app)
@@ -29,11 +29,10 @@ before('create a loan request', () => {
     });
 });
 
-
 describe('POST /loans/<:loan-id>/repayment', () => {
   it('It should not repay, when loan is fully repaid', () => {
     const moreAmountInfo = {
-      paidAmount: 500000.75,
+      paidAmount: 500000.75
     };
     chai
       .request(app)
@@ -50,7 +49,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
 
   it('It should not repay, when loan is not approved', () => {
     const validInfo = {
-      paidAmount: 2625,
+      paidAmount: 2625
     };
     chai
       .request(app)
@@ -67,7 +66,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
 
   it('It should repay some amount on the existing loan', () => {
     const validInfo = {
-      paidAmount: 2625,
+      paidAmount: 2625
     };
     chai
       .request(app)
@@ -84,7 +83,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
 
   it('should not repay some amount on the unexisting loan', () => {
     const validInfo = {
-      paidAmount: 2625,
+      paidAmount: 2625
     };
     chai
       .request(app)
@@ -101,7 +100,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
 
   it('should error message for setting the Authorization header', () => {
     const validInfo = {
-      paidAmount: 2625,
+      paidAmount: 2625
     };
     chai
       .request(app)
@@ -114,10 +113,9 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       });
   });
 
-
   it('should return error message - Only admin are allowed to perform this operation', () => {
     const validInfo = {
-      paidAmount: 2625,
+      paidAmount: 2625
     };
     chai
       .request(app)

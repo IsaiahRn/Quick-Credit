@@ -5,7 +5,7 @@ import loanValidate from '../validations/loanValidation';
 
 const login = {
   email: 'testingapp@gmail.com',
-  password: 'Kazeem27',
+  password: 'Kazeem27'
 };
 
 const user = {
@@ -13,7 +13,7 @@ const user = {
   firstname: 'tester',
   lastname: 'testing',
   password: 'Kazeem27',
-  address: '27, tunji Olaiya street',
+  address: '27, tunji Olaiya street'
 };
 
 const loan = {
@@ -21,13 +21,12 @@ const loan = {
   lastname: 'david',
   email: 'karenzi@mail.com',
   tenor: 5,
-  amount: 2000.567,
+  amount: 2000.567
 };
 
 const approveReject = {
-  status: 'approved',
+  status: 'approved'
 };
-
 
 describe('validation', () => {
   let result;

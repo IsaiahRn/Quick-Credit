@@ -6,12 +6,11 @@ import generateToken from './Token/generateTokens';
 import generate from '../helpers/jwtVerifyToken';
 
 const {
-  NewUserData2Token, UserToken, NewUserData2, missingUserInfo,
+  NewUserData2Token, UserToken, NewUserData2, missingUserInfo
 } = generateToken.signup;
 const token = generate.getToken(NewUserData2Token);
 
 chai.use(chaiHttp);
-
 
 describe('POST /api/v1/auth/signup', () => {
   it('should create a new user', () => {

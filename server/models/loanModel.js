@@ -1,16 +1,16 @@
 import moment from 'moment';
-import users from './userModel';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import users from './userModel';
 import generate from '../helpers/jwtVerifyToken';
 import isAuth from '../middlewares/isAuthenticated';
 
-import dotenv from "dotenv";
 dotenv.config();
 
 const loans = [];
 
 class Loan {
-  create(data, user) {
+  create (data, user) {
     const { tenor, amount } = data;
     const { email, firstname, lastname } = user;
     const inputTenor = parseInt(tenor);
@@ -31,16 +31,14 @@ class Loan {
       amount: inputAmount,
       paymentInstallment: installment,
       Balance: initialBalance,
-      interest,
+      interest
     };
 
     loans.push(newLoan);
     return newLoan;
   }
 
-
-  fetchAllLoans(query = {}) {
-
+  fetchAllLoans (query = {}) {
     if (query.status && query.repaid) {
       const boolRepaid = JSON.parse(query.repaid);
       return loans.filter(loan => loan.status === query.status.toLowerCase() && loan.repaid === boolRepaid);
@@ -49,21 +47,18 @@ class Loan {
     return loans;
   }
 
-
-  findById(loanId) {
+  findById (loanId) {
     const id = parseInt(loanId, 10);
 
     const allLoan = loans.filter(ln => ln.loanId === id);
     return allLoan;
   }
 
-
-  findOne(loanId) {
+  findOne (loanId) {
     return loans.find(loan => loan.loanId === parseInt(loanId, 10));
   }
 
-
-  updateOne(loanId, data) {
+  updateOne (loanId, data) {
     const found = this.findOne(loanId);
 
     const index = loans.indexOf(found);
@@ -77,7 +72,7 @@ class Loan {
     return loans[index];
   }
 
-  deleteOne(Loanid) {
+  deleteOne (Loanid) {
     const found = this.findOne(Loanid);
     const index = loans.indexOf(found);
     const deletedAccount = loans.splice(index, 1);

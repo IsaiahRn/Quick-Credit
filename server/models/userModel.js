@@ -7,7 +7,7 @@ const users = [];
 
 class User {
   // @create an admin
-  async createAdmin() {
+  async createAdmin () {
     const hashedPwd = await hash.hashPassword('admin1234', 10);
     const adminInfo = {
       id: users.length + 1,
@@ -17,20 +17,19 @@ class User {
       hashedPwd,
       address: 'Quick-Credit HeadQuaters',
       isAdmin: true,
-      created_on: moment(new Date()),
+      created_on: moment(new Date())
     };
 
     // pushing our admin to our array
     return users.push(adminInfo);
   }
 
-
   /**
    * creating the new user
    */
-  async create(request) {
+  async create (request) {
     const {
-      email, firstname, lastname, password, address,
+      email, firstname, lastname, password, address
     } = request;
     const statusInput = String('Unverified');
     const hashedPwd = await hash.hashPassword(password, 10);
@@ -43,7 +42,7 @@ class User {
       address,
       status: statusInput,
       isAdmin: false,
-      created_on: moment(new Date()),
+      created_on: moment(new Date())
     };
 
     // pushing our new users to our array
@@ -62,25 +61,24 @@ class User {
   }
 
   /* find a user by his/her registered email */
-  findOne(email) {
+  findOne (email) {
     return users.find(user => user.email === email);
   }
 
   /* find a user by his/her id */
-  findById(id) {
+  findById (id) {
     return users.find(user => user.id === parseInt(id, 10));
   }
 
-  findByEmail(email) {
+  findByEmail (email) {
     return users.find(user => user.email === email);
   }
 
-  findUser(token){
+  findUser (token) {
     return users.filter(user => user.token === token);
   }
 
-
-  verifyEmail(email) {
+  verifyEmail (email) {
     const found = this.findByEmail(email);
 
     const index = users.indexOf(found);
