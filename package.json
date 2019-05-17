@@ -6,7 +6,6 @@
   "scripts": {
     "start": "babel-node server/server.js",
     "dev-start": "nodemon --exec babel-node server/server.js",
-    "pretest": "eslint --ignore-path .gitignore .",
     "test": "nyc --reporter=text --reporter=lcov mocha --timeout 1500 --require babel-polyfill --require babel-register server/test/*.spec.js --exit",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js --fix",
