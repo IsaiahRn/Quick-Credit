@@ -1,7 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
-import swagger from 'swagger-ui-express';
-import documentation from '../swagger.json';
+import swaggerUi from 'swagger-ui-express';
+import swaggerdocs from '../swagger.json';
 
 import authRoutes from './routes/authRoutes';
 import loanRoutes from './routes/loanRoutes';
@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(logger('dev'));
+
 
 app.get('/', (req, res) => {
   res.status(200).send({
@@ -30,6 +31,9 @@ app.use('/api/v1/loans', loanRoutes);
 // User Route--Mark a user as verified.
 app.use('/api/v1/users', userVerifyRoute);
 
+// Swagger Docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerdocs));
+
 // Handle non-exist route
 app.use('*', (req, res) => {
   res.status(404).send({
@@ -37,8 +41,6 @@ app.use('*', (req, res) => {
     error: 'Route does not exist. Page Not Found!',
   });
 });
-
-app.use('/api/documentations', swagger.serve, swagger.setup(documentation));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
