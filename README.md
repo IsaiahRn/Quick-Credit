@@ -49,6 +49,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Endpoints
 Using Postman to access these endpoints
+Please find the API documentation on `https://quick-creditapp.herokuapp.com/api-docs`
 
 | Endpoint                   | Methods   | Functionalities        |
 | ---------------------------|-----------|------------------------|
@@ -72,9 +73,14 @@ Using Postman to access these endpoints
 * CSS
 * NodeJS / Express
 
+### Hosted API
+
+Preview Hosted API(Heroku) here:
+[ Hosted api](https://quick-creditapp.herokuapp.com)
+
 ### UI templates
 
-Preview UI template here:
+Preview UI template(Github Pages) here:
 [ UI Template](https://isaiahrn.github.io/Quick-Credit/UI/index.html)
 
 
