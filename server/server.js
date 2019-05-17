@@ -1,5 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
+import swagger from 'swagger-ui-express';
+import documentation from '../swagger.json';
 
 import authRoutes from './routes/authRoutes';
 import loanRoutes from './routes/loanRoutes';
@@ -35,6 +37,8 @@ app.use('*', (req, res) => {
     error: 'Route does not exist. Page Not Found!',
   });
 });
+
+app.use('/api/documentations', swagger.serve, swagger.setup(documentation));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
