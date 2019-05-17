@@ -1,20 +1,17 @@
 import _ from 'lodash';
 import model from '../models/userModel';
 
+const userVerifyError = (res, status, error) => res.status(status).send({status, error});
 class UserController {
+
   // Verify a user account - "Verified"
   static verifyAccount(req, res) {
     const { email } = req.params;
     const userFound = model.findByEmail(email);
     if (!userFound) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'User email not found!',
-      });
+      userVerifyError(res, 404, 'User email not found!')
     }
-
-    // userFound.status = req.body.status;
-
+    else{
     const updatedUser = model.verifyEmail(email);
 
     return res.status(200).send({
@@ -30,6 +27,8 @@ class UserController {
       ]),
     });
   }
+  }
 }
+
 
 export default UserController;

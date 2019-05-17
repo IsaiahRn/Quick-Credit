@@ -5,7 +5,9 @@ import generate from '../helpers/jwtVerifyToken';
 import validation from '../validations/authValidation';
 
 class Users {
+
   static async signup(req, res) {
+
     // create admin
     await model.createAdmin();
 
@@ -72,6 +74,7 @@ class Users {
   }
 
   static async login(req, res) {
+
     // create admin
     await model.createAdmin();
 
@@ -89,12 +92,10 @@ class Users {
   if(error){
     `${errorValidator()}`;
     if (error) {
-      return res
-        .status(400)
-        .send({
-          status: res.statusCode,
-          error: arrErrorList,
-        });
+        return res.status(400).send({
+        status: res.statusCode,
+        error: arrErrorList,
+      });
     }
   }
 
@@ -118,7 +119,7 @@ class Users {
     if (!match || !found) {
       return res.status(400).send({
         status: res.statusCode,
-        message: 'Wrong credential provided!',
+        error: 'Wrong credential provided!',
       });
     }
 
@@ -160,4 +161,5 @@ class Users {
       });
   }
 }
+
 export default Users;

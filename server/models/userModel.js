@@ -63,7 +63,7 @@ class User {
 
   /* find a user by his/her registered email */
   findOne(email) {
-    return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+    return users.find(user => user.email === email);
   }
 
   /* find a user by his/her id */
@@ -73,6 +73,10 @@ class User {
 
   findByEmail(email) {
     return users.find(user => user.email === email);
+  }
+
+  findUser(token){
+    return users.filter(user => user.token === token);
   }
 
 

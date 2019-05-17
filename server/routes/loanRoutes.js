@@ -14,7 +14,7 @@ router.post('/', isAuth, loanController.createLoan);
 router.get('/', isAuth, loanController.getAllLoans);
 
 // GET api/v1/loans/<loanId> (fetch a single loan)
-router.get('/:loanId', loanController.getLoan);
+router.get('/:loanId', isAuth, loanController.getLoan);
 
 // PATCH api/v1/loans/<loanId> (Approve Or Reject a loan request)
 router.patch('/:loanId', isAuth, isAdmin, loanController.getApproveReject);

@@ -4,6 +4,7 @@ import loan from './loanModel';
 const repayment = [];
 
 class Repayment {
+
   // Create repayments
   createRepayment(data, loanId) {
     const { paidAmount } = data;
@@ -41,6 +42,7 @@ class Repayment {
     return loanRepaymentRecord;
   }
 
+  // Fetch a loan By Id
   findOne(loanId) {
     const id = parseInt(loanId, 10);
 

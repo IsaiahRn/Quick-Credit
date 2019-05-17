@@ -3,9 +3,6 @@ import Joi from 'joi';
 export default {
   createLoan(value) {
     const schema = {
-      firstname: Joi.string().required(),
-      lastname: Joi.string().required(),
-      email: Joi.string().required(),
       tenor: Joi.number().required(),
       amount: Joi.number().required(),
     };
