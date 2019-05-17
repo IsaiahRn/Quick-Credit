@@ -1,0 +1,422 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Quick Credit is an web lending platform that provides short term soft loans to individuals.",
+    "version": "1",
+    "title": "Quick credit"
+  },
+  "host": "quick-creditapp.herokuapp.com",
+  "basePath": "/api/v1/",
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Loan Repayment"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Creating a user account",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User create",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User account created!",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "user signin",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User has to login",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful!"
+          }
+        }
+      }
+    },
+    "/users/{email}/verify": {
+      "patch": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Mark user as verified",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Admin token",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user status",
+            "in": "body",
+            "description": "Mark user account as verified",
+            "schema": {
+              "$ref": "#/definitions/userstatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Account Verified!"
+          }
+        }
+      }
+    },
+    "/loans": {
+      "post": {
+        "tags": [
+          "Loan application"
+        ],
+        "summary": "Creating a loan application.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Client token",
+            "required": true
+          },
+          {
+            "name": "Loan",
+            "in": "body",
+            "description": "Loan application status(pending)",
+            "schema": {
+              "$ref": "#/definitions/loan"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Loan created successfully!"
+          }
+        }
+      }
+    },
+    "/loans'": {
+      "get": {
+        "tags": [
+          "Loan application"
+        ],
+        "summary": "Fetching all loan applications",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Admin token",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/allLoans"
+            }
+          }
+        }
+      }
+    },
+    "/loans/{id}": {
+      "get": {
+        "tags": [
+          "Loan application"
+        ],
+        "summary": "Fetching a single loan application by id",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Admin token",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Loan id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Here is your loan!"
+          }
+        }
+      }
+    },
+    "/loans/{id}'": {
+      "patch": {
+        "tags": [
+          "Loan application"
+        ],
+        "summary": "Approve or reject loan application",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Admin token",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Loan ID"
+          },
+          {
+            "name": "status",
+            "in": "body",
+            "required": true,
+            "description": "Loan status (approved or pending",
+            "schema": {
+              "$ref": "#/definitions/approveloan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status successfully updated!"
+          }
+        }
+      }
+    },
+    "/loans/{id}/repayment": {
+      "post": {
+        "tags": [
+          "Loan Repayment"
+        ],
+        "summary": "Creating a new loan application.",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Client/User token",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Loan application ID",
+            "type": "integer"
+          },
+          {
+            "name": "amount",
+            "in": "body",
+            "required": true,
+            "description": "Loan repayment amount",
+            "schema": {
+              "$ref": "#/definitions/repayment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Repayment record created!"
+          }
+        }
+      }
+    },
+    "/loans/{id}/repayments": {
+      "get": {
+        "tags": [
+          "Loan Repayment"
+        ],
+        "summary": "Get a single loan repayment history",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Client/User token",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Loan application ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Here is your loan repayment history!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "signup": {
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "userstatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "loan": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "tenor": {
+          "type": "integer"
+        }
+      }
+    },
+    "approveloan": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "allLoans": {
+      "type": "object",
+      "properties": {
+        "loadId": {
+          "type": "integer"
+        },
+        "user": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "repaid": {
+          "type": "boolean"
+        },
+        "tenor": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "paymentInstallment": {
+          "type": "integer"
+        },
+        "balance": {
+          "type": "integer"
+        },
+        "interest": {
+          "type": "integer"
+        }
+      }
+    },
+    "repayment": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
