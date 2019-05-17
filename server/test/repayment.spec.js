@@ -14,9 +14,6 @@ chai.use(chaiHttp);
 
 before('create a loan request', () => {
   const validLoanData2 = {
-    firstname: 'karenzi',
-    lastname: 'david',
-    email: 'test2@test.com',
     tenor: 5,
     amount: 20000.587,
   };

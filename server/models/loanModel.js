@@ -1,11 +1,18 @@
 import moment from 'moment';
 import users from './userModel';
+import jwt from 'jsonwebtoken';
+import generate from '../helpers/jwtVerifyToken';
+import isAuth from '../middlewares/isAuthenticated';
+
+import dotenv from "dotenv";
+dotenv.config();
 
 const loans = [];
 
 class Loan {
-  create(data) {
+  create(data, user) {
     const { tenor, amount } = data;
+    const { email, firstname, lastname } = user;
     const inputTenor = parseInt(tenor);
     const inputAmount = parseFloat(amount);
     const interest = parseFloat(0.05);
@@ -14,9 +21,9 @@ class Loan {
     const initialBalance = parseFloat(installment * tenor);
     const newLoan = {
       loanId: loans.length + 1,
-      firstname: data.firstname || '',
-      lastname: data.lastname || '',
-      email: data.email || '',
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
       createdOn: moment().format('LLLL'),
       status: 'pending',
       repaid: false,
