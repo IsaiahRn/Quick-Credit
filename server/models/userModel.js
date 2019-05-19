@@ -17,7 +17,7 @@ class User {
       hashedPwd,
       address: 'Quick-Credit HeadQuaters',
       isAdmin: true,
-      created_on: moment(new Date())
+      created_on: moment().format('LLLL')
     };
 
     // pushing our admin to our array
@@ -42,7 +42,7 @@ class User {
       address,
       status: statusInput,
       isAdmin: false,
-      created_on: moment(new Date())
+      created_on: moment().format('LLLL')
     };
 
     // pushing our new users to our array
@@ -87,7 +87,7 @@ class User {
     }
 
     users[index].status = 'Verified';
-    users[index].modified_at = moment(new Date());
+    users[index].modified_at = moment().format('LLLL');
 
     return users[index];
   }

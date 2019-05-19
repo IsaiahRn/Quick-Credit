@@ -37,6 +37,7 @@
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.11",
+    "pg": "^7.11.0",
     "swagger-ui-express": "^4.0.3"
   },
   "devDependencies": {
