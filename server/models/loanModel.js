@@ -2,15 +2,11 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import users from './userModel';
-import generate from '../helpers/jwtVerifyToken';
-import isAuth from '../middlewares/isAuthenticated';
+import db from './index';
 
-dotenv.config();
-
-const loans = [];
 
 class Loan {
-  create (data, user) {
+  async create (data, user) {
     const { tenor, amount } = data;
     const { email, firstname, lastname } = user;
     const inputTenor = parseInt(tenor);
@@ -20,7 +16,6 @@ class Loan {
     const installment = parseFloat((inputAmount + amountInterest) / inputTenor);
     const initialBalance = parseFloat(installment * tenor);
     const newLoan = {
-      loanId: loans.length + 1,
       email: email,
       firstname: firstname,
       lastname: lastname,
@@ -34,8 +29,10 @@ class Loan {
       interest
     };
 
-    loans.push(newLoan);
-    return newLoan;
+    const queryText = 'INSERT INTO loans(email,firstname,lastname,created_on,status,repaid,tenor,amount,paymentInstallment,balance,interest)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)RETURNING*';
+    const values = [newLoan.email, newLoan.firstname, newLoan.lastname, newLoan.createdOn, newLoan.status, newLoan.repaid, newLoan.tenor, newLoan.amount, newLoan.paymentInstallment, newLoan.Balance, newLoan.interest];
+    const response = await db.query(queryText, values);
+    return response
   }
 
   fetchAllLoans (query = {}) {

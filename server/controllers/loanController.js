@@ -6,7 +6,7 @@ import validation from '../validations/loanValidation';
 
 class Loans {
   // create loan request
-  static createLoan (req, res) {
+  static async createLoan (req, res) {
     // check if there's invalid data in request body
     const { error } = validation.createLoan(req.body);
 
@@ -26,21 +26,24 @@ class Loans {
         });
       }
     }
-    const ownerId = req.headers.authorization;
-    const ownerInfo = users.findUser(ownerId);
+    const ownerId = parseInt(req.user.id, 10);
+    const ownerInfo = await users.findById(ownerId);
 
-    if (!ownerInfo) {
+    if (ownerInfo.rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'User Info Not Found!'
       });
     }
 
-    const loan = model.create(req.body, req.user);
+    const { rows } = await model.create(req.body, req.user, ownerInfo.rows[0].id);
+    rows[0].firstname = ownerInfo.rows[0].firstname;
+    rows[0].lastname = ownerInfo.rows[0].lastname;
+    rows[0].email = ownerInfo.rows[0].email;
     return res.status(201).send({
-      status: res.statusCode,
       message: 'Loan created successfully!',
-      data: loan
+      status: res.statusCode,
+      data: rows[0],
     });
   }
 
