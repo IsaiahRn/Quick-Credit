@@ -6,8 +6,6 @@ import validation from '../validations/authValidation';
 
 class Users {
   static async signup (req, res) {
-    // // create admin
-    // await model.createAdmin();
 
     // check if there's an error in our request sent
     const { error } = validation.signup(req.body);
@@ -72,8 +70,6 @@ class Users {
   }
 
   static async login (req, res) {
-    // // create admin
-    // await model.createAdmin();
 
     // check if there's an error in our request sent
     const { error } = validation.login(req.body);
@@ -133,8 +129,6 @@ class Users {
       ])
     );
 
-    // // set the new token in the response - back to the client
-    // found.token = token;
 
     // return the logged in user's data with a token
     return res
