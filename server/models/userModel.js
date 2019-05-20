@@ -71,6 +71,18 @@ class User {
     const response = await db.query(queryText, [$token]);
     return response;
   }
+
+  async verifyEmail (email) {
+
+    const { rows } = await this.findByEmail(email);
+
+    const status = 'Verified';
+    const modifiedOn = moment().format('LLLL');
+
+    const queryText = 'UPDATE users SET status=$1,modified_on=$2 WHERE email=$3 RETURNING*;';
+    const response = await db.query(queryText, [status, modifiedOn, rows[0].email]);
+    return response;
+  }
 }
 
 export default new User();
