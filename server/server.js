@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 app.use('/api/v2/auth', authRoutes);
 
 // Loan Routes
-app.use('/api/v1/loans', loanRoutes);
+app.use('/api/v2/loans', loanRoutes);
 
 // User Route--Mark a user as verified.
 app.use('/api/v2/users', userVerifyRoute);

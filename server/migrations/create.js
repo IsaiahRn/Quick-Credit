@@ -2,7 +2,7 @@
 import pool from './index';
 
 pool.on('connect', () => {
-  console.log('Quick-Credit connected to the db');
+  // console.log('Quick-Credit connected to the db');
 });
 
 const queryText = `
