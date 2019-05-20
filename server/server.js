@@ -30,7 +30,7 @@ app.use('/api/v2/auth', authRoutes);
 app.use('/api/v1/loans', loanRoutes);
 
 // User Route--Mark a user as verified.
-app.use('/api/v1/users', userVerifyRoute);
+app.use('/api/v2/users', userVerifyRoute);
 
 // Swagger Docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerdocs));
