@@ -35,24 +35,17 @@ class Loan {
     return response
   }
 
-  fetchAllLoans (query = {}) {
-    if (query.status && query.repaid) {
-      const boolRepaid = JSON.parse(query.repaid);
-      return loans.filter(loan => loan.status === query.status.toLowerCase() && loan.repaid === boolRepaid);
-    }
 
-    return loans;
+  async findById (loanId) {
+    const queryText = 'SELECT * FROM loans WHERE id=$1;';
+    const response = await db.query(queryText, [parseInt(loanId, 10)]);
+    return response;
   }
 
-  findById (loanId) {
-    const id = parseInt(loanId, 10);
-
-    const allLoan = loans.filter(ln => ln.loanId === id);
-    return allLoan;
-  }
-
-  findOne (loanId) {
-    return loans.find(loan => loan.loanId === parseInt(loanId, 10));
+  async findOne (loanId) {
+    const queryText = 'SELECT * FROM loans WHERE id=$1;';
+    const response = await db.query(queryText, [parseInt(loanId, 10)]);
+    return response;
   }
 
   updateOne (loanId, data) {
