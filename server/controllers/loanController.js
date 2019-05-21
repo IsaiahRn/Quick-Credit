@@ -79,21 +79,22 @@ class Loans {
   }
 
   // Approve or reject a loan application
-  static getApproveReject (req, res) {
+  static async getApproveReject (req, res) {
     const { loanId } = req.params;
-    const loanFound = model.findOne(loanId);
-    if (!loanFound) {
+    const loanFound = await model.findOne(loanId);
+    if (loanFound.rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'Loan with this ID not found'
       });
     }
 
-    const updatedLoan = model.updateOne(loanId, req.body);
+    const { rows } = await model.updateOne(loanId, req.body);
+    console.log(rows);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Status successfully updated!',
-      data: updatedLoan
+      data: rows[0],
     });
   }
 

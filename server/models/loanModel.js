@@ -20,6 +20,7 @@ class Loan {
       firstname: firstname,
       lastname: lastname,
       createdOn: moment().format('LLLL'),
+      modifiedOn: moment().format('LLLL'),
       status: 'pending',
       repaid: false,
       tenor: inputTenor,
@@ -29,8 +30,8 @@ class Loan {
       interest
     };
 
-    const queryText = 'INSERT INTO loans(email,firstname,lastname,created_on,status,repaid,tenor,amount,paymentInstallment,balance,interest)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)RETURNING*';
-    const values = [newLoan.email, newLoan.firstname, newLoan.lastname, newLoan.createdOn, newLoan.status, newLoan.repaid, newLoan.tenor, newLoan.amount, newLoan.paymentInstallment, newLoan.Balance, newLoan.interest];
+    const queryText = 'INSERT INTO loans(email,firstname,lastname,created_on,modified_on,status,repaid,tenor,amount,paymentInstallment,balance,interest)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)RETURNING*';
+    const values = [newLoan.email, newLoan.firstname, newLoan.lastname, newLoan.createdOn, newLoan.modifiedOn, newLoan.status, newLoan.repaid, newLoan.tenor, newLoan.amount, newLoan.paymentInstallment, newLoan.Balance, newLoan.interest];
     const response = await db.query(queryText, values);
     return response
   }
@@ -53,18 +54,19 @@ class Loan {
     return response;
   }
 
-  updateOne (loanId, data) {
-    const found = this.findOne(loanId);
+  async updateOne (loanId, data) {
+    const { rows } = await this.findById(loanId);
 
-    const index = loans.indexOf(found);
-    if (index === -1) {
+    if(rows.length === 0){
       return undefined;
     }
 
-    loans[index].status = data.status || found.status;
-    loans[index].modified_at = moment(new Date());
+    const status = data.status || rows[0].status;
+    const modified_at = moment().format('LLLL');
 
-    return loans[index];
+    const queryText = 'UPDATE loans SET status=$1,modified_on=$2 WHERE id=$3 RETURNING *;';
+    const response = await db.query(queryText, [status, modified_at, rows[0].id]);
+    return response;
   }
 
   deleteOne (Loanid) {
