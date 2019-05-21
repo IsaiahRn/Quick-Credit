@@ -43,6 +43,13 @@ class User {
     return result;
   }
 
+  /*fetch all users*/
+  async fetchAllUsers () {
+    const queryText = "SELECT * FROM users;";
+    const response = await db.query(queryText);
+    return response;
+  }
+
   /* find a user by his/her registered email */
   async findOne (email) {
     const queryText = 'SELECT * FROM users WHERE email=$1;';

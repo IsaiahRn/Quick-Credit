@@ -150,6 +150,18 @@ class Users {
         }
       });
   }
+
+  // Get all loans
+  static async getAllUsers (req, res) {
+    const { rows } = await model.fetchAllUsers();
+    
+    return res.status(200).send({
+      status: res.statusCode,
+      message: "All User accounts!",
+      data: rows
+    });
+  }
+
 }
 
 export default Users;
