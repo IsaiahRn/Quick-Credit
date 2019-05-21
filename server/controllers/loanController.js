@@ -47,39 +47,23 @@ class Loans {
     });
   }
 
-  // Get all loans
-  static getAllLoans (req, res) {
-    const foundLoans = model.fetchAllLoans(req.query);
-    if (!foundLoans) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'Query not found'
-      });
-    }
-    return res.status(200).send({
-      status: res.statusCode,
-      message: 'Here is All your loans!',
-      data: foundLoans
-    });
-  }
 
   // Get a specific loan application
-  static getLoan (req, res) {
+  static async getLoan (req, res) {
     const loanID = parseInt(req.params.loanId, 10);
-    const findID = model.findOne(loanID);
+    const { rows } = await model.findOne(loanID);
 
-    if (!findID) {
+    if (rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'Loan with this ID not found'
       });
     }
 
-    const findLoan = model.findById(loanID);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Here is your loan!',
-      data: findLoan[0]
+      data: rows[0]
     });
   }
 
