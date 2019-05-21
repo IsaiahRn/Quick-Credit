@@ -35,6 +35,11 @@ class Loan {
     return response
   }
 
+  async fetchAllLoans () {
+    const queryText = "SELECT * FROM loans;";
+    const response = await db.query(queryText);
+    return response;
+  }
 
   async findById (loanId) {
     const queryText = 'SELECT * FROM loans WHERE id=$1;';

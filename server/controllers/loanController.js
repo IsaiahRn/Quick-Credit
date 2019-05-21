@@ -47,6 +47,17 @@ class Loans {
     });
   }
 
+  // Get all loans
+  static async getAllLoans (req, res) {
+    const { rows } = await model.fetchAllLoans();
+    
+    return res.status(200).send({
+      status: res.statusCode,
+      message: "Here is All your loans!",
+      data: rows
+    });
+  
+  }
 
   // Get a specific loan application
   static async getLoan (req, res) {
