@@ -69,6 +69,20 @@ class Loan {
     return response;
   }
 
+  async updateBalance(loanId, newBalance) {
+    const { rows } = await this.findOne(loanId);
+    const queryText = 'UPDATE loans SET balance=$1 WHERE id=$2 RETURNING*;';
+    const response = await db.query(queryText, [parseFloat(newBalance), rows[0].id]);
+    return response;
+  }
+
+  async updateStatus(loanId, newStatus){
+    const { rows } = await this.findOne(loanId);
+    const queryText = 'UPDATE loans SET status=$1 WHERE id=$2 RETURNING*;';
+    const response = await db.query(queryText, [parseFloat(newStatus), rows[0].id]);
+    return response;
+  }
+
   deleteOne (Loanid) {
     const found = this.findOne(Loanid);
     const index = loans.indexOf(found);

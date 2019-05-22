@@ -37,6 +37,7 @@ const queryText = `
                   id SERIAL PRIMARY KEY,
                   loan_id INTEGER REFERENCES loans(id) NOT NULL,
                   amount FLOAT NOT NULL,
+                  paidamount FLOAT NOT NULL,
                   paymentInstallment FLOAT NOT NULL,
                   balance FLOAT NOT NULL,
                   created_on TIMESTAMP);
