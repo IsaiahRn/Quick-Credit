@@ -99,55 +99,39 @@ class Loans {
   }
 
   // Create a loan repayment record
-  static createRepaymentRecord (req, res) {
+  static async createRepaymentRecord (req, res) {
     const { loanId } = req.params;
     const { paidAmount } = req.body;
-    const loanFound = model.findOne(loanId);
+    const loanFound = await model.findOne(loanId);
 
-    if (!loanFound) {
+    if (loanFound.rows.length === 0) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'Wrong Loan ID!'
       });
     }
-    if (loanFound) {
-      if (parseFloat(loanFound.Balance) < paidAmount) {
+    if (loanFound.rows.length !== 0) {
+      if (parseFloat(loanFound.rows[0].balance) < paidAmount) {
         return res.status(400).send({
           status: res.statusCode,
           error: 'You have fully repaid your loan'
         });
       }
-      if (loanFound.status != 'approved') {
+      if (loanFound.rows[0].status != 'approved') {
         return res.status(400).send({
           status: res.statusCode,
           error: 'Please, loan need to be approved!'
         });
       }
     }
-    const repaymentInfo = repayment.createRepayment(req.body, loanId);
+
+    const { rows } = await repayment.createRepayment(req.body, loanId);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Repayment record created!',
-      data: repaymentInfo
+      data: rows[0],
     });
   }
 
-  // Get a loan repayment history
-  static getRepaymentRecords (req, res) {
-    const loanID = parseInt(req.params.loanId, 10);
-    const findLoanRecord = repayment.findById(loanID);
-
-    if (findLoanRecord.length <= 0) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'Repayment history not found'
-      });
-    }
-    return res.status(200).send({
-      status: res.statusCode,
-      message: 'Here is your loan repayment history!',
-      data: findLoanRecord
-    });
-  }
 }
 export default Loans;

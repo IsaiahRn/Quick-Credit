@@ -1,58 +1,46 @@
 import moment from 'moment';
 import loan from './loanModel';
+import db from './index';
 
-const repayment = [];
 
 class Repayment {
   // Create repayments
-  createRepayment (data, loanId) {
+  async createRepayment (data, loanId) {
     const { paidAmount } = data;
-    const loanFound = loan.findOne(loanId);
+    const { rows } = await loan.findOne(loanId);
 
-    const balance = parseFloat(loanFound.Balance) - parseFloat(paidAmount);
+    const balance = parseFloat(rows[0].balance) - parseFloat(paidAmount);
+    await loan.updateBalance(rows[0].id, balance);
 
     const pAmount = parseFloat(paidAmount);
 
     const repaymentCreation = {
-      repaymentId: repayment.length + 1,
-      loanId: loanFound.loanId,
-      createdOn: moment().format('LLLL'),
-      amount: loanFound.amount,
-      monthlyInstallement: loanFound.paymentInstallment,
+      loanId: rows[0].id,
+      amount: rows[0].amount,
       paidAmount: pAmount,
-      newbalance: balance
+      monthlyInstallement: rows[0].paymentinstallment,
+      newbalance: balance,
+      createdOn: moment().format('LLLL'),
     };
 
-    repayment.push(repaymentCreation);
-    loanFound.Balance = parseFloat(loanFound.Balance) - parseFloat(paidAmount);
-
-    if (loanFound.Balance <= 0) {
-      loanFound.repaid = true;
+    if (rows[0].balance <= 0) {
+      rows[0].repaid = true;
     }
 
-    return repaymentCreation;
+    const queryText = 'INSERT INTO repayments(loan_id,amount,paidamount,paymentinstallment,balance,created_on)VALUES($1,$2,$3,$4,$5,$6)RETURNING*;';
+    const values = [
+      repaymentCreation.loanId,
+      repaymentCreation.amount,
+      repaymentCreation.paidAmount,
+      repaymentCreation.monthlyInstallement,
+      repaymentCreation.newbalance,
+      repaymentCreation.createdOn,
+    ];
+    const response = await db.query(queryText, values);
+    return response;
+
   }
 
-  // Fetch a loan repayment history
-  findById (loanId) {
-    const id = parseInt(loanId, 10);
-
-    const loanRepaymentRecord = repayment.filter(loan => loan.loanId === id);
-    return loanRepaymentRecord;
-  }
-
-  // Fetch a loan By Id
-  findOne (loanId) {
-    const id = parseInt(loanId, 10);
-
-    const loanRepaymentRecord = repayment.find(loan => loan.loanId === id);
-    return loanRepaymentRecord;
-  }
-
-  // Fetch all loan repayments history
-  fetchAllRepayment (loanId) {
-    return repayment;
-  }
 }
 
 export default new Repayment();
