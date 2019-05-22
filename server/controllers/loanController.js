@@ -133,5 +133,24 @@ class Loans {
     });
   }
 
+  // Get a loan repayment history
+  static async getRepaymentRecords (req, res) {
+
+    const loanID = parseInt(req.params.loanId, 10);
+    const { rows } = await repayment.findOne(loanID);
+    
+    if (rows.length === 0) {
+      return res.status(404).send({
+        status: res.statusCode,
+        error: "Repayment history not found"
+      })
+    }
+
+    return res.status(200).send({
+      status: res.statusCode,
+      message: 'Here is your loan repayment history!',
+      data: rows
+    });
+  }
 }
 export default Loans;

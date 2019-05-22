@@ -41,6 +41,21 @@ class Repayment {
 
   }
 
+  // Fetch a loan repayment history
+  async findById (loanId) {
+    const queryText = 'SELECT repayments.id AS id, repayments.created_on AS createdOn, repayments.amount AS amount, loans.id AS loanId, repayments.paidamount AS paidAmount, repayments.paymentInstallment AS monthlyInstallement, repayments.balance AS newbalance FROM repayments INNER JOIN loans ON loans.id = $1;';
+    const response = await db.query(queryText, [loanId]);
+    return response;
+  }
+
+
+  // Fetch a loan By Id
+  async findOne (loanId) {
+    const queryText = 'SELECT * FROM repayments WHERE loan_id=$1;'
+    const response = await db.query(queryText, [loanId]);
+    return response;
+  }
+  
 }
 
 export default new Repayment();
