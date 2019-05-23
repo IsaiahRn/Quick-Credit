@@ -19,7 +19,7 @@ before('create a loan request', () => {
   };
   chai
     .request(app)
-    .post('/api/v1/loans')
+    .post('/api/v2/loans')
     .set('Authorization', `${userToken}`)
     .send(validLoanData2)
     .end((err, res) => {
@@ -36,7 +36,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .set('Authorization', `${adminToken}`)
       .send(moreAmountInfo)
       .end((err, res) => {
@@ -53,14 +53,13 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .set('Authorization', `${adminToken}`)
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal(400);
         expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.deep.equal('Please, loan need to be approved!');
       });
   });
 
@@ -70,14 +69,13 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .set('Authorization', `${adminToken}`)
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal(400);
         expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.deep.equal('Please, loan need to be approved!');
       });
   });
 
@@ -87,7 +85,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/200/repayment')
+      .post('/api/v2/loans/200/repayment')
       .set('Authorization', `${adminToken}`)
       .send(validInfo)
       .end((err, res) => {
@@ -104,7 +102,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
@@ -119,7 +117,7 @@ describe('POST /loans/<:loan-id>/repayment', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .set('Authorization', `${adminToken}`)
       .send(validInfo)
       .end((err, res) => {

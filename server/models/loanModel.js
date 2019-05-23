@@ -42,6 +42,12 @@ class Loan {
     return response;
   }
 
+  async fetchAllByQuery (status, repaid) {
+    const queryText = "SELECT * FROM loans WHERE status=$1 AND repaid=$2;";
+    const response = await db.query(queryText, [status, repaid]);
+    return response;
+  }
+
   async findById (loanId) {
     const queryText = 'SELECT * FROM loans WHERE id=$1;';
     const response = await db.query(queryText, [parseInt(loanId, 10)]);
@@ -78,8 +84,8 @@ class Loan {
 
   async updateStatus(loanId, newStatus){
     const { rows } = await this.findOne(loanId);
-    const queryText = 'UPDATE loans SET status=$1 WHERE id=$2 RETURNING*;';
-    const response = await db.query(queryText, [parseFloat(newStatus), rows[0].id]);
+    const queryText = 'UPDATE loans SET repaid=$1 WHERE id=$2 RETURNING *;';
+    const response = await db.query(queryText, [newStatus, rows[0].id]);
     return response;
   }
 

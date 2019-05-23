@@ -5,6 +5,14 @@ node_js:
 cache:
   directories:
     - "node_modules"
+addons:
+  postgresql: "9.6"
+
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database quickcreditest' -U myuser
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

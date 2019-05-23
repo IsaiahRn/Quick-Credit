@@ -40,7 +40,7 @@ export default {
       isAdmin: true,
     },
     NewUserData: {
-      email: 'test@QuickCredit.com',
+      email: 'test1@QuickCredit.com',
       firstname: 'karenzi',
       lastname: 'david',
       password: 'Quick1234@56',

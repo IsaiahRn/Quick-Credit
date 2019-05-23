@@ -49,13 +49,29 @@ class Loans {
 
   // Get all loans
   static async getAllLoans (req, res) {
-    const { rows } = await model.fetchAllLoans();
+    const reqStatus = req.query.status;
+    const reqRepaid = req.query.repaid;
     
+    const reqLoans = await model.fetchAllByQuery(reqStatus, reqRepaid);
+    if(reqLoans.rows.length !== 0){
+      return res.status(200).json({
+        status: res.statusCode,
+        data: reqLoans.rows,
+      })
+    }
+    const { rows } = await model.fetchAllLoans();
+    if(reqStatus == null && reqRepaid == null && rows.length !== 0){
     return res.status(200).send({
       status: res.statusCode,
       message: "Here is All your loans!",
       data: rows
     });
+  }
+
+  return res.status(404).send({
+    status: res.statusCode,
+    error: 'No loan Found',
+  });
   
   }
 
@@ -112,6 +128,7 @@ class Loans {
     }
     if (loanFound.rows.length !== 0) {
       if (parseFloat(loanFound.rows[0].balance) < paidAmount) {
+        await model.updateStatus(loanId,true);
         return res.status(400).send({
           status: res.statusCode,
           error: 'You have fully repaid your loan'

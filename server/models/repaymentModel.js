@@ -23,9 +23,6 @@ class Repayment {
       createdOn: moment().format('LLLL'),
     };
 
-    if (rows[0].balance <= 0) {
-      rows[0].repaid = true;
-    }
 
     const queryText = 'INSERT INTO repayments(loan_id,amount,paidamount,paymentinstallment,balance,created_on)VALUES($1,$2,$3,$4,$5,$6)RETURNING*;';
     const values = [
