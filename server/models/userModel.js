@@ -1,28 +1,10 @@
 import moment from 'moment';
 
 import hash from '../helpers/Bcrypt';
-import generate from '../helpers/jwtVerifyToken';
+import db from './index';
 
-const users = [];
 
 class User {
-  // @create an admin
-  async createAdmin () {
-    const hashedPwd = await hash.hashPassword('admin1234', 10);
-    const adminInfo = {
-      id: users.length + 1,
-      email: 'admin@test.com',
-      firstname: 'runoro',
-      lastname: 'isaiah',
-      hashedPwd,
-      address: 'Quick-Credit HeadQuaters',
-      isAdmin: true,
-      created_on: moment(new Date())
-    };
-
-    // pushing our admin to our array
-    return users.push(adminInfo);
-  }
 
   /**
    * creating the new user
@@ -34,7 +16,6 @@ class User {
     const statusInput = String('Unverified');
     const hashedPwd = await hash.hashPassword(password, 10);
     const newUser = {
-      id: users.length + 1,
       email,
       firstname,
       lastname,
@@ -42,54 +23,72 @@ class User {
       address,
       status: statusInput,
       isAdmin: false,
-      created_on: moment(new Date())
+      created_on: moment().format('LLLL')
     };
 
-    // pushing our new users to our array
-    users.push(newUser);
+    // Inserting into users table
 
-    const returnedUser = newUser;
+    const queryText = 'INSERT INTO users(email,firstname,lastname,password,address,status,is_admin,created_on)VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING*';
+    const values = [
+      newUser.email,
+      newUser.firstname,
+      newUser.lastname,
+      newUser.hashedPwd,
+      newUser.address,
+      newUser.status,
+      newUser.isAdmin,
+      newUser.created_on,
+    ];
+    const result = await db.query(queryText, values);
+    return result;
+  }
 
-    // generating a token
-    const token = generate.getToken(newUser);
-
-    // adding the token key with its value into the returned user Object
-    returnedUser.token = token;
-
-    // return that User info
-    return returnedUser;
+  /*fetch all users*/
+  async fetchAllUsers () {
+    const queryText = "SELECT * FROM users;";
+    const response = await db.query(queryText);
+    return response;
   }
 
   /* find a user by his/her registered email */
-  findOne (email) {
-    return users.find(user => user.email === email);
+  async findOne (email) {
+    const queryText = 'SELECT * FROM users WHERE email=$1;';
+    const $email = email;
+    const response = await db.query(queryText, [$email]);
+    return response;
   }
 
   /* find a user by his/her id */
-  findById (id) {
-    return users.find(user => user.id === parseInt(id, 10));
+  async findById (id) {
+    const queryText = 'SELECT * FROM users WHERE id=$1;';
+    const response = await db.query(queryText, [parseInt(id, 10)]);
+    return response;
   }
 
-  findByEmail (email) {
-    return users.find(user => user.email === email);
+  async findByEmail (email) {
+    const queryText = 'SELECT * FROM users WHERE email=$1;';
+    const $email = email;
+    const response = await db.query(queryText, [$email]);
+    return response;
   }
 
-  findUser (token) {
-    return users.filter(user => user.token === token);
+  async findUser (token) {
+    const queryText = 'SELECT * FROM users WHERE token=$1;';
+    const $token = email;
+    const response = await db.query(queryText, [$token]);
+    return response;
   }
 
-  verifyEmail (email) {
-    const found = this.findByEmail(email);
+  async verifyEmail (email) {
 
-    const index = users.indexOf(found);
-    if (index === -1) {
-      return undefined;
-    }
+    const { rows } = await this.findByEmail(email);
 
-    users[index].status = 'Verified';
-    users[index].modified_at = moment(new Date());
+    const status = 'Verified';
+    const modifiedOn = moment().format('LLLL');
 
-    return users[index];
+    const queryText = 'UPDATE users SET status=$1,modified_on=$2 WHERE email=$3 RETURNING*;';
+    const response = await db.query(queryText, [status, modifiedOn, rows[0].email]);
+    return response;
   }
 }
 

@@ -6,7 +6,7 @@ import validation from '../validations/loanValidation';
 
 class Loans {
   // create loan request
-  static createLoan (req, res) {
+  static async createLoan (req, res) {
     // check if there's invalid data in request body
     const { error } = validation.createLoan(req.body);
 
@@ -26,128 +26,147 @@ class Loans {
         });
       }
     }
-    const ownerId = req.headers.authorization;
-    const ownerInfo = users.findUser(ownerId);
+    const ownerId = parseInt(req.user.id, 10);
+    const ownerInfo = await users.findById(ownerId);
 
-    if (!ownerInfo) {
+    if (ownerInfo.rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'User Info Not Found!'
       });
     }
 
-    const loan = model.create(req.body, req.user);
+    const { rows } = await model.create(req.body, req.user, ownerInfo.rows[0].id);
+    rows[0].firstname = ownerInfo.rows[0].firstname;
+    rows[0].lastname = ownerInfo.rows[0].lastname;
+    rows[0].email = ownerInfo.rows[0].email;
     return res.status(201).send({
-      status: res.statusCode,
       message: 'Loan created successfully!',
-      data: loan
+      status: res.statusCode,
+      data: rows[0],
     });
   }
 
   // Get all loans
-  static getAllLoans (req, res) {
-    const foundLoans = model.fetchAllLoans(req.query);
-    if (!foundLoans) {
-      return res.status(404).send({
+  static async getAllLoans (req, res) {
+    const reqStatus = req.query.status;
+    const reqRepaid = req.query.repaid;
+    
+    const reqLoans = await model.fetchAllByQuery(reqStatus, reqRepaid);
+    if(reqLoans.rows.length !== 0){
+      return res.status(200).json({
         status: res.statusCode,
-        error: 'Query not found'
-      });
+        data: reqLoans.rows,
+      })
     }
+    const { rows } = await model.fetchAllLoans();
+    if(reqStatus == null && reqRepaid == null && rows.length !== 0){
     return res.status(200).send({
       status: res.statusCode,
-      message: 'Here is All your loans!',
-      data: foundLoans
+      message: "Here is All your loans!",
+      data: rows
     });
   }
 
-  // Get a specific loan application
-  static getLoan (req, res) {
-    const loanID = parseInt(req.params.loanId, 10);
-    const findID = model.findOne(loanID);
+  return res.status(404).send({
+    status: res.statusCode,
+    error: 'No loan Found',
+  });
+  
+  }
 
-    if (!findID) {
+  // Get a specific loan application
+  static async getLoan (req, res) {
+    const loanID = parseInt(req.params.loanId, 10);
+    const { rows } = await model.findOne(loanID);
+
+    if (rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'Loan with this ID not found'
       });
     }
 
-    const findLoan = model.findById(loanID);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Here is your loan!',
-      data: findLoan[0]
+      data: rows[0]
     });
   }
 
   // Approve or reject a loan application
-  static getApproveReject (req, res) {
+  static async getApproveReject (req, res) {
     const { loanId } = req.params;
-    const loanFound = model.findOne(loanId);
-    if (!loanFound) {
+    const loanFound = await model.findOne(loanId);
+    if (loanFound.rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'Loan with this ID not found'
       });
     }
 
-    const updatedLoan = model.updateOne(loanId, req.body);
+    const { rows } = await model.updateOne(loanId, req.body);
+    console.log(rows);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Status successfully updated!',
-      data: updatedLoan
+      data: rows[0],
     });
   }
 
   // Create a loan repayment record
-  static createRepaymentRecord (req, res) {
+  static async createRepaymentRecord (req, res) {
     const { loanId } = req.params;
     const { paidAmount } = req.body;
-    const loanFound = model.findOne(loanId);
+    const loanFound = await model.findOne(loanId);
 
-    if (!loanFound) {
+    if (loanFound.rows.length === 0) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'Wrong Loan ID!'
       });
     }
-    if (loanFound) {
-      if (parseFloat(loanFound.Balance) < paidAmount) {
+    if (loanFound.rows.length !== 0) {
+      if (parseFloat(loanFound.rows[0].balance) < paidAmount) {
+        await model.updateStatus(loanId,true);
         return res.status(400).send({
           status: res.statusCode,
           error: 'You have fully repaid your loan'
         });
       }
-      if (loanFound.status != 'approved') {
+      if (loanFound.rows[0].status != 'approved') {
         return res.status(400).send({
           status: res.statusCode,
           error: 'Please, loan need to be approved!'
         });
       }
     }
-    const repaymentInfo = repayment.createRepayment(req.body, loanId);
+
+    const { rows } = await repayment.createRepayment(req.body, loanId);
     return res.status(200).send({
       status: res.statusCode,
       message: 'Repayment record created!',
-      data: repaymentInfo
+      data: rows[0],
     });
   }
 
   // Get a loan repayment history
-  static getRepaymentRecords (req, res) {
-    const loanID = parseInt(req.params.loanId, 10);
-    const findLoanRecord = repayment.findById(loanID);
+  static async getRepaymentRecords (req, res) {
 
-    if (findLoanRecord.length <= 0) {
+    const loanID = parseInt(req.params.loanId, 10);
+    const { rows } = await repayment.findOne(loanID);
+    
+    if (rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
-        error: 'Repayment history not found'
-      });
+        error: "Repayment history not found"
+      })
     }
+
     return res.status(200).send({
       status: res.statusCode,
       message: 'Here is your loan repayment history!',
-      data: findLoanRecord
+      data: rows
     });
   }
 }

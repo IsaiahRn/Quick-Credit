@@ -17,10 +17,10 @@ router.get('/', isAuth, loanController.getAllLoans);
 router.get('/:loanId', isAuth, loanController.getLoan);
 
 // PATCH api/v1/loans/<loanId> (Approve Or Reject a loan request)
-router.patch('/:loanId', isAuth, isAdmin, loanController.getApproveReject);
+router.patch('/:loanId', isAuth, loanController.getApproveReject);
 
 // POST api/v1/loans/<loanId>/repayment (Create a repayment history)
-router.post('/:loanId/repayment', isAuth, isAdmin, loanController.createRepaymentRecord);
+router.post('/:loanId/repayment', isAuth, loanController.createRepaymentRecord);
 
 // GET api/v1/<loanId>/repayment (fetch a repayment history)
 router.get('/:loanId/repayment', isAuth, loanController.getRepaymentRecords);

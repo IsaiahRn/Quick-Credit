@@ -9,6 +9,7 @@ import userVerifyRoute from './routes/userVerifyRoute';
 
 const app = express();
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -23,13 +24,13 @@ app.get('/', (req, res) => {
 });
 
 // User authentication Routes
-app.use('/api/v1/auth', authRoutes);
+app.use('/api/v2/auth', authRoutes);
 
 // Loan Routes
-app.use('/api/v1/loans', loanRoutes);
+app.use('/api/v2/loans', loanRoutes);
 
 // User Route--Mark a user as verified.
-app.use('/api/v1/users', userVerifyRoute);
+app.use('/api/v2/users', userVerifyRoute);
 
 // Swagger Docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerdocs));

@@ -6,8 +6,6 @@ import validation from '../validations/authValidation';
 
 class Users {
   static async signup (req, res) {
-    // create admin
-    await model.createAdmin();
 
     // check if there's an error in our request sent
     const { error } = validation.signup(req.body);
@@ -31,8 +29,8 @@ class Users {
     }
 
     // check if the provided email is registered before
-    const found = model.findOne(req.body.email);
-    if (found) {
+    const found = await model.findOne(req.body.email);
+    if (found.rows.length !== 0) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'This e-mail is already registered!'
@@ -40,8 +38,8 @@ class Users {
     }
 
     // create a new user and return user data includes token
-    const newUser = await model.create(req.body);
-    const token = generate.getToken(_.pick(newUser, [
+    const { rows } = await model.create(req.body);
+    const token = generate.getToken(_.pick(rows[0], [
       'id',
       'email',
       'firstname',
@@ -59,21 +57,19 @@ class Users {
         message: 'User account created!',
         data: {
           token,
-          id: newUser.id,
-          email: newUser.email,
-          firstname: newUser.firstname,
-          lastname: newUser.lastname,
-          address: newUser.address,
-          status: newUser.status,
-          isAdmin: newUser.isAdmin,
-          created_on: newUser.created_on
+          id: rows[0].id,
+          email: rows[0].email,
+          firstname: rows[0].firstname,
+          lastname: rows[0].lastname,
+          address: rows[0].address,
+          status: rows[0].status,
+          isAdmin: rows[0].isAdmin,
+          created_on: rows[0].created_on
         }
       });
   }
 
   static async login (req, res) {
-    // create admin
-    await model.createAdmin();
 
     // check if there's an error in our request sent
     const { error } = validation.login(req.body);
@@ -100,8 +96,8 @@ class Users {
     const { email, password } = req.body;
 
     // check if the provided email is registered
-    const found = await model.findOne(email);
-    if (!found) {
+    const { rows } = await model.findOne(email);
+    if (rows.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'This e-mail is not yet registered!'
@@ -111,8 +107,8 @@ class Users {
     /** check if the provided password is matching with or equal to
      * the hashed password in our memory
      */
-    const match = await hash.isMatch(password, found.hashedPwd);
-    if (!match || !found) {
+    const match = await hash.isMatch(password, rows[0].password);
+    if (!match) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'Wrong credential provided!'
@@ -121,7 +117,7 @@ class Users {
 
     /** generate a token to be given to the logged in user */
     const token = generate.getToken(
-      _.pick(found, [
+      _.pick(rows[0], [
         'id',
         'email',
         'firstname',
@@ -133,8 +129,6 @@ class Users {
       ])
     );
 
-    // set the new token in the response - back to the client
-    found.token = token;
 
     // return the logged in user's data with a token
     return res
@@ -145,17 +139,29 @@ class Users {
         message: 'Login successful!',
         data: {
           token,
-          id: found.id,
-          email: found.email,
-          firstname: found.firstname,
-          lastname: found.lastname,
-          address: found.address,
-          status: found.status,
-          isAdmin: found.isAdmin,
-          created_on: found.created_on
+          id: rows[0].id,
+          email: rows[0].email,
+          firstname: rows[0].firstname,
+          lastname: rows[0].lastname,
+          address: rows[0].address,
+          status: rows[0].status,
+          isAdmin: rows[0].isAdmin,
+          created_on: rows[0].created_on
         }
       });
   }
+
+  // Get all loans
+  static async getAllUsers (req, res) {
+    const { rows } = await model.fetchAllUsers();
+    
+    return res.status(200).send({
+      status: res.statusCode,
+      message: "All User accounts!",
+      data: rows
+    });
+  }
+
 }
 
 export default Users;

@@ -2,15 +2,11 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import users from './userModel';
-import generate from '../helpers/jwtVerifyToken';
-import isAuth from '../middlewares/isAuthenticated';
+import db from './index';
 
-dotenv.config();
-
-const loans = [];
 
 class Loan {
-  create (data, user) {
+  async create (data, user) {
     const { tenor, amount } = data;
     const { email, firstname, lastname } = user;
     const inputTenor = parseInt(tenor);
@@ -20,11 +16,11 @@ class Loan {
     const installment = parseFloat((inputAmount + amountInterest) / inputTenor);
     const initialBalance = parseFloat(installment * tenor);
     const newLoan = {
-      loanId: loans.length + 1,
       email: email,
       firstname: firstname,
       lastname: lastname,
       createdOn: moment().format('LLLL'),
+      modifiedOn: moment().format('LLLL'),
       status: 'pending',
       repaid: false,
       tenor: inputTenor,
@@ -34,42 +30,63 @@ class Loan {
       interest
     };
 
-    loans.push(newLoan);
-    return newLoan;
+    const queryText = 'INSERT INTO loans(email,firstname,lastname,created_on,modified_on,status,repaid,tenor,amount,paymentInstallment,balance,interest)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)RETURNING*';
+    const values = [newLoan.email, newLoan.firstname, newLoan.lastname, newLoan.createdOn, newLoan.modifiedOn, newLoan.status, newLoan.repaid, newLoan.tenor, newLoan.amount, newLoan.paymentInstallment, newLoan.Balance, newLoan.interest];
+    const response = await db.query(queryText, values);
+    return response
   }
 
-  fetchAllLoans (query = {}) {
-    if (query.status && query.repaid) {
-      const boolRepaid = JSON.parse(query.repaid);
-      return loans.filter(loan => loan.status === query.status.toLowerCase() && loan.repaid === boolRepaid);
-    }
-
-    return loans;
+  async fetchAllLoans () {
+    const queryText = "SELECT * FROM loans;";
+    const response = await db.query(queryText);
+    return response;
   }
 
-  findById (loanId) {
-    const id = parseInt(loanId, 10);
-
-    const allLoan = loans.filter(ln => ln.loanId === id);
-    return allLoan;
+  async fetchAllByQuery (status, repaid) {
+    const queryText = "SELECT * FROM loans WHERE status=$1 AND repaid=$2;";
+    const response = await db.query(queryText, [status, repaid]);
+    return response;
   }
 
-  findOne (loanId) {
-    return loans.find(loan => loan.loanId === parseInt(loanId, 10));
+  async findById (loanId) {
+    const queryText = 'SELECT * FROM loans WHERE id=$1;';
+    const response = await db.query(queryText, [parseInt(loanId, 10)]);
+    return response;
   }
 
-  updateOne (loanId, data) {
-    const found = this.findOne(loanId);
+  async findOne (loanId) {
+    const queryText = 'SELECT * FROM loans WHERE id=$1;';
+    const response = await db.query(queryText, [parseInt(loanId, 10)]);
+    return response;
+  }
 
-    const index = loans.indexOf(found);
-    if (index === -1) {
+  async updateOne (loanId, data) {
+    const { rows } = await this.findById(loanId);
+
+    if(rows.length === 0){
       return undefined;
     }
 
-    loans[index].status = data.status || found.status;
-    loans[index].modified_at = moment(new Date());
+    const status = data.status || rows[0].status;
+    const modified_at = moment().format('LLLL');
 
-    return loans[index];
+    const queryText = 'UPDATE loans SET status=$1,modified_on=$2 WHERE id=$3 RETURNING *;';
+    const response = await db.query(queryText, [status, modified_at, rows[0].id]);
+    return response;
+  }
+
+  async updateBalance(loanId, newBalance) {
+    const { rows } = await this.findOne(loanId);
+    const queryText = 'UPDATE loans SET balance=$1 WHERE id=$2 RETURNING*;';
+    const response = await db.query(queryText, [parseFloat(newBalance), rows[0].id]);
+    return response;
+  }
+
+  async updateStatus(loanId, newStatus){
+    const { rows } = await this.findOne(loanId);
+    const queryText = 'UPDATE loans SET repaid=$1 WHERE id=$2 RETURNING *;';
+    const response = await db.query(queryText, [newStatus, rows[0].id]);
+    return response;
   }
 
   deleteOne (Loanid) {
