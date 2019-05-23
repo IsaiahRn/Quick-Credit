@@ -2,7 +2,7 @@
 import pool from './index';
 
 pool.on('connect', () => {
-  // console.log('Quick-Credit connected to the db');
+  console.log('Quick-Credit connected to the db');
 });
 
 const queryText = `
@@ -46,7 +46,7 @@ const queryText = `
 // @creating the tables into the database
 pool.query(queryText)
   .then(() => {
-    // console.log("tables created successfully!")
+    console.log("tables created successfully!")
   })
   .catch((err) => {
     console.log(err);

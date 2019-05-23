@@ -8,10 +8,10 @@
     "drop": "babel-node server/migrations/drop.js",
     "seed": "babel-node server/seed/index.js",
     "start": "concurrently \"babel-node server/server.js\" \"npm run create && npm run seed\"",
-    "server": " nodemon --exec npm start",
+    "server": "nodemon --exec npm start",
     "dev": "concurrently \"npm run drop\" \"npm run create\" \"npm run seed\" \"npm run server\"",
     "dev:test": "concurrently \"npm run drop\" && npm run create && npm run seed",
-    "test": "npm run dev:test && nyc --reporter=text --reporter=lcov mocha --timeout 1500 --require babel-polyfill --require babel-register server/test/*.spec.js --exit",
+    "test": "NODE_ENV=test npm run dev:test && nyc --reporter=text --reporter=lcov mocha --timeout 1500 --require babel-polyfill --require babel-register ./server/tests/**/*.test.js --exit",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js --fix",
     "build": "babel ./server --out-dir dist"

@@ -1,10 +1,22 @@
 import { Pool } from 'pg';
-import dotenv from 'dotenv';
 
-dotenv.config();
+// @Bring In Keys for DB from configuration folder
+import keys from '../config/keys';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
+// @Make connection to the Database Depending on the environment
+if (process.env.NODE_ENV === "production") {
+  module.exports = new Pool({
+    connectionString: keys.DATABASE_URL,
+  });
+}
 
-module.exports = pool;
+if (process.env.NODE_ENV === "test") {
+  module.exports = new Pool({
+    connectionString: keys.DATABASE_URL,
+  });
+
+} else {
+  module.exports = new Pool({
+    connectionString: keys.DATABASE_URL,
+  });
+}
