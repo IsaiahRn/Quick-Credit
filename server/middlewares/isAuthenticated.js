@@ -1,12 +1,11 @@
 import jwt from 'jsonwebtoken';
-
 import keys from '../config/keys';
 
 const isAuth = (req, res, next) => {
   if (req.headers.authorization === undefined) {
     return res.status(400).send({
       status: res.statusCode,
-      error: 'No Authorization!'
+      error: 'No Authorization!',
     });
   }
 
@@ -14,7 +13,7 @@ const isAuth = (req, res, next) => {
   if (!token) {
     return res.status(401).send({
       status: res.statusCode,
-      error: 'No token provided, Access Denied!'
+      error: 'No token provided, Access Denied!',
     });
   }
 
@@ -25,7 +24,7 @@ const isAuth = (req, res, next) => {
   } catch (error) {
     return res.status(403).send({
       status: res.statusCode,
-      error: 'Invalid Token provided!'
+      error: 'Invalid Token provided!',
     });
   }
 };

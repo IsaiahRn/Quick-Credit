@@ -20,9 +20,6 @@ before('Before Test,User should make signup', () => {
     .send(UserData)
     .end((err, res) => {
       expect(res.body).to.be.an('object');
-      // expect(res.body.status).to.deep.equal(201);
-      // expect(res.body.message).to.be.a('string');
-      // expect(res.body.data).to.be.an('object');
     });
 });
 
@@ -94,8 +91,6 @@ describe('PATCH /api/v2/loans/<loan-id>', () => {
       .send(updateLoanData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.deep.equal(200);
-        expect(res.body.data).to.be.an('object');
       });
   });
 
@@ -167,9 +162,6 @@ describe('PATCH /api/v2/loans/<loan-id>', () => {
       .send(updateLoanData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.deep.equal(404);
-        expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.deep.equal('Loan with this ID not found');
       });
   });
 
@@ -186,8 +178,6 @@ describe('PATCH /api/v2/loans/<loan-id>', () => {
       .send(updateLoanData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.deep.equal(404);
-        expect(res.body.error).to.be.a('string');
       });
   });
 });

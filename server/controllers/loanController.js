@@ -2,6 +2,7 @@ import _ from 'lodash';
 import model from '../models/loanModel';
 import users from '../models/userModel';
 import repayment from '../models/repaymentModel';
+import email from '../helpers/mailer';
 import validation from '../validations/loanValidation';
 
 class Loans {
@@ -105,8 +106,12 @@ class Loans {
       });
     }
 
+    
     const { rows } = await model.updateOne(loanId, req.body);
-    console.log(rows);
+
+    //@send a notification to the user's email
+    await email.sendTransactionEmail(rows[0].status, rows[0].email, rows[0].amount);
+    
     return res.status(200).send({
       status: res.statusCode,
       message: 'Status successfully updated!',

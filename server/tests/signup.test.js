@@ -21,10 +21,6 @@ describe('POST /api/v1/auth/signup', () => {
       .send(NewUserData2)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        // expect(res.body.status).to.equal(201);
-        // expect(res.body.message).to.be.a('string');
-        // expect(res.body.message).to.equal('User account created!');
-        // expect(res.body.data).to.be.an('object');
       });
   });
 

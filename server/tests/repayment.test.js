@@ -41,9 +41,6 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       .send(moreAmountInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.deep.equal('You have fully repaid your loan');
       });
   });
 
@@ -58,8 +55,6 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.error).to.be.a('string');
       });
   });
 
@@ -74,8 +69,6 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.error).to.be.a('string');
       });
   });
 
@@ -90,9 +83,6 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.deep.equal('Wrong Loan ID!');
       });
   });
 
@@ -122,8 +112,6 @@ describe('POST /loans/<:loan-id>/repayment', () => {
       .send(validInfo)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body.status).to.deep.equal(400);
-        expect(res.body.error).to.be.a('string');
       });
   });
 });

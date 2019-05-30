@@ -45,12 +45,12 @@
     display:block;
     height:100%;
     width:400px;
-    margin-left:-10rem;
+    margin-left:-7rem;
     margin-top:20px;
   }
   .contact__submit__signin{
     width:400px;
-    margin-left:-10rem;
+    margin-left:-7rem;
   }
   .contact__submit__loan{
     margin-left:20px;
@@ -298,7 +298,7 @@
   }
   .how__content{
     display:block;
-    margin-left:100px;
+    margin-left:2px;
     align-content:space-around;
   }
   .row{
