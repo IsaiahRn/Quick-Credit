@@ -46,7 +46,7 @@ class Users {
       'lastname',
       'address',
       'status',
-      'isAdmin',
+      'is_admin',
       'created_on'
     ]));
     return res
@@ -56,14 +56,13 @@ class Users {
         status: res.statusCode,
         message: 'User account created!',
         data: {
-          token,
           id: rows[0].id,
           email: rows[0].email,
           firstname: rows[0].firstname,
           lastname: rows[0].lastname,
           address: rows[0].address,
           status: rows[0].status,
-          isAdmin: rows[0].isAdmin,
+          is_admin: rows[0].is_admin,
           created_on: rows[0].created_on
         }
       });
@@ -124,7 +123,7 @@ class Users {
         'lastname',
         'address',
         'status',
-        'isAdmin',
+        'is_admin',
         'created_on'
       ])
     );
@@ -145,7 +144,7 @@ class Users {
           lastname: rows[0].lastname,
           address: rows[0].address,
           status: rows[0].status,
-          isAdmin: rows[0].isAdmin,
+          is_admin: rows[0].is_admin,
           created_on: rows[0].created_on
         }
       });

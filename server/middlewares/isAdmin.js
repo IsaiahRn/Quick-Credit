@@ -1,10 +1,10 @@
 const isAdmin = (req, res, next) => {
-  if (req.user.isAdmin) {
+  if (req.user.is_admin) {
     return next();
   }
   return res.status(403).send({
     status: res.statusCode,
-    error: 'Sorry! Admin permission is required.',
+    error: 'Admin permission required!',
   });
 };
 

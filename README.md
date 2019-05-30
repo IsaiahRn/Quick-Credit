@@ -15,7 +15,7 @@ Build status of continous integration i.e travis, coveralls and codeclimate
 
 ### Motivation
 
-This App is a challenge that will contritube greatly to my journey of becoming a world class developer
+This App is a challenge that will contritube greatly to my journey of becoming a world class developer.
 
 ### Getting Started
 
@@ -26,7 +26,8 @@ These instructions will get you a copy of the project up and running on your loc
 Here is the environment prerequisite for the web app
 
 ```
-NodeJS
+- NodeJS
+- PostgreSQL
 ```
 
 ### Installing
@@ -37,8 +38,9 @@ Say what the step will be
 
 
 - Clone the repository `git clone https://github.com/IsaiahRn/Quick-Credit.git`
+- Copy config.sample to config then correct change the corresponding variables
 - Run `npm install` to install node packages
-- Run `npm run dev-start` to start the web app 
+- Run `npm run server` to start the web app 
 
 
 End with an example of getting some data out of the system or using it for a little demo
@@ -72,6 +74,7 @@ Please find the API documentation on `https://quick-creditapp.herokuapp.com/api-
 * Javascript
 * CSS
 * NodeJS / Express
+* PostgreSQL
 
 ### Hosted API
 
@@ -92,6 +95,7 @@ Preview UI template(Github Pages) here:
 
 ## Acknowledgments
 
-* [Andela](http://andela.com)
+* [Esther Nammanda](http://andela.com)
+* [Shalon Ngigi](http://andela.com)
 * [Olawale Aladeusi](https://www.codementor.io/olawalealadeusi896/building-simple-api-with-es6-krn8xx3k6)
 * [Brad Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
