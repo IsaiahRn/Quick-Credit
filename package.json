@@ -25,9 +25,18 @@
       "windows"
     ]
   },
+  "nyc": {
+    "exclude": [
+      "server/helpers/mailer.js",
+      "server/controllers/loanController.js",
+      "server/tests",
+      "server/config"
+    ]
+  },
   "author": "Isaie Runoro",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",

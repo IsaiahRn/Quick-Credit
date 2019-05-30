@@ -2,3 +2,7 @@ node_modules
 .nyc_output
 coverage
 npm-debug.log
+server/config/dev.keys.js
+server/config/prod.keys.js
+server/config/keys.js
+server/config/tests.keys.js
